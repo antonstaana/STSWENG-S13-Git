@@ -1,0 +1,28 @@
+body {
+    
+    color: rgb(0, 0, 0);
+}
+
+.navbar {
+    position: fixed;
+}
+
+.navbar-custom{
+    background-color: #38B6FF;
+    
+}
+
+.navbar-custom .navbar-brand, .navbar-custom .navbar-text { 
+    color: FFDE59; 
+    font-family: 'Spartan' , sans-serif;
+    font-size: 30;
+    padding: 0;
+} 
+
+
+
+.title {
+    font-size: x-large;
+}
+
+
