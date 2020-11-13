@@ -35,7 +35,8 @@ const restaurantSchema = new mongoose.Schema({
         contentType: String
     },
     availability: {type:Boolean},
-    menu: [productSchema] //https://mongoosejs.com/docs/2.7.x/docs/embedded-documents.html
+    menu: [productSchema], //https://mongoosejs.com/docs/2.7.x/docs/embedded-documents.html
+    orders: [orderSchema],
 },{
         toObject: {
             virtuals: true,
