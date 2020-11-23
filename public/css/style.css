@@ -2,13 +2,23 @@
 
 body {
     
- background-color: black;
- color:white;
+ background-color: white;
+ color:#737373;
 
 }
 
 .title {
     font-size: x-large;
+}
+
+.center{
+    text-align: center;
+}
+
+.wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 760px;
 }
 /*Start of Navbar styles*/
 .navbar {
@@ -21,7 +31,7 @@ body {
 }
 
 .navbar-custom .navbar-brand, .navbar-custom .navbar-text { 
-    color: FFDE59; 
+    color: #FFDE59; 
     font-family: 'Spartan' , sans-serif;
     padding: 0;
 } 
@@ -73,11 +83,7 @@ body {
 
 /*End of Footer Styles*/
 
-.wrapper {
-    position: relative;
-    width: 100%;
-    min-height: 760px;
-}
+
 
 /*Login/Signup Modal*/
 
