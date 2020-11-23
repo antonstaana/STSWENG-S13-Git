@@ -6,11 +6,15 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
 
+//routes
+const public_route = require('./routes/public_routes');
+
 const app = express();
 const port = 8000;
 
-
-app.set('view engine', 'hbs');
+app.listen(port,() => {
+    console.log("App listening at port " + port);
+});
 
 app.engine('hbs', hbs({
     extname:'hbs',
@@ -20,14 +24,22 @@ app.engine('hbs', hbs({
 
 }));
 
-app.listen(port,() => {
-    console.log("App listening at port " + port);
-});
+app.set('view engine', 'hbs');
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+
+/*
 app.get('/', (req,res) =>{
     res.render('landing',{
     });
-});
+});*/
 
 //set static files
 app.use(express.static('public'));
+
+app.use('/', public_route);
+
