@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const databaseURL ='url';
+const databaseURL ='mongodb://localhost:8000/app';
 
 const options = {
   useNewUrlParser: true,
