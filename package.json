@@ -1,0 +1,25 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "LocalEats Webapp",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0",
+    "mongoose": "^5.10.14"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antonstaana/STSWENG-S13-Git.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/antonstaana/STSWENG-S13-Git/issues"
+  },
+  "homepage": "https://github.com/antonstaana/STSWENG-S13-Git#readme"
+}
