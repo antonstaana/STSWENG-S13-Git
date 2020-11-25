@@ -1,10 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Spartan:wght@900&display=swap');
 
+html{
+    position:relative;
+    min-height: 100%;
+}
 body {
     
  background-color: white;
  color:#737373;
-
+}
+header{
+    padding: 160px 0px 100px;
 }
 
 .title {
@@ -18,8 +24,26 @@ body {
 .wrapper {
     position: relative;
     width: 100%;
-    min-height: 760px;
+    min-height: 80vh;
 }
+
+/*headers styles*/
+
+.about_header{
+   background-image: url("../assets/food-stock-photo.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color:#FFDE59;
+    font-family: 'Spartan', sans-serif;
+}
+
+.about_header_text {
+    font-family: 'Spartan', sans-serif;
+}
+
+
 /*Start of Navbar styles*/
 .navbar {
     position: fixed;
@@ -81,6 +105,11 @@ body {
     padding:0;
 }
 
+.footer-socials a{
+    font-size: 24px;
+
+}
+
 /*End of Footer Styles*/
 
 
@@ -89,7 +118,10 @@ body {
 
 .modal-dialog{
     width: 400px;
-    border-radius: 10px;
+}
+
+.modal-content{
+    border-radius: 20px;
 }
 
 .modal-header{
