@@ -12,3 +12,7 @@ router.get('/contacts', public_controller.get_contacts);
 router.get('/privacy', public_controller.get_privacy);
 
 router.get('/terms', public_controller.get_terms);
+
+router.get('/restaurant_registration', public_controller.get_restaurant_registration);
+
+router.get('/restaurant_profile', public_controller.get_restaurant_profile);

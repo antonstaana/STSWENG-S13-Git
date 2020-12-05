@@ -34,3 +34,17 @@ exports.get_terms = function(req,res){
     });
 
 }
+
+exports.get_restaurant_registration = function(req,res){
+    res.render('restaurant_registration', {
+
+    });
+
+}
+
+exports.get_restaurant_profile = function(req,res){
+    res.render('restaurant_profile', {
+
+    });
+
+}
