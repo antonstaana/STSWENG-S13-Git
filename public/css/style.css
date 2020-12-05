@@ -194,13 +194,13 @@ font-family: 'Spartan' , sans-serif;
     width:80%;
 }
 
-.fb-profile img.fb-image-lg{
+.restaurant-profile img.restaurant-image-lg{
     z-index: 0;
     width: 100%;  
     margin-bottom: 10px;
 }
 
-.fb-image-profile
+.restaurant-image-profile
 {
     margin: -100px 0px 0px 50px;
     z-index: 9;
