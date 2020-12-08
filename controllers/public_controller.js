@@ -48,3 +48,10 @@ exports.get_restaurant_profile = function(req,res){
     });
 
 }
+
+exports.get_try = function(req,res){
+    res.render('try', {
+
+    });
+
+}

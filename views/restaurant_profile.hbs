@@ -1,9 +1,62 @@
-<div class="container">
-    <div class="restaurant-profile">
+<div class="inner-wrapper">
+    <div class="restaurant-profile-header">
         <img align="left" class="restaurant-image-lg" src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>
         <img align="left" class="restaurant-image-profile thumbnail" src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" alt="Profile image example"/>
         <div class="restaurant-profile-text">
             <h1>Restaurant Name</h1>
         </div>
     </div>
-</div> <!-- /container -->  
+
+<div class="restaurant-profile-content">
+<ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="overview-tab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="menu-tab" data-toggle="tab" href="#menu" role="tab" aria-controls="menu" aria-selected="false">Menu</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="review" aria-selected="false">Ratings and Reviews</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="order" aria-selected="false">Order</a>
+  </li>
+</ul>
+
+<div class="restaurant-profile-pane tab-content">
+  <div class="tab-pane active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+    <div class="overview-container">
+      <div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut quam id ligula hendrerit scelerisque at et arcu. Quisque in molestie ante. Nunc nec arcu.</p>
+        <hr>
+        <h2>Details</h2> 
+        <h6 class="restaurant-category">Category/Cuisine</h6>
+        <p>Food Cuisine</p>
+        <h6>Operating Hours</h6>
+        <p>XX:XXxx - XX:XXxx</p>
+        <h6>Address</h6>
+        <p>XX BLDG, XX Street, XXXX City ZIP</p>
+        <h6>Contact</h6>
+        <p>XX XXXX XXXX</p>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane" id="menu" role="tabpanel" aria-labelledby="menu-tab">
+    <div class="menu-container">
+      <div class="menu-list ">
+        {{>menu_item}}
+        {{>menu_item}}
+        {{>menu_item}}
+        {{>menu_item}}
+        {{>menu_item}}
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane" id="review" role="tabpanel" aria-labelledby="review-tab">Ratings and Reviews</div>
+  <div class="tab-pane" id="order" role="tabpanel" aria-labelledby="order-tab">Order</div>
+</div>
+
+</div>
+
+
+</div> 

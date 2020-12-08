@@ -16,3 +16,5 @@ router.get('/terms', public_controller.get_terms);
 router.get('/restaurant_registration', public_controller.get_restaurant_registration);
 
 router.get('/restaurant_profile', public_controller.get_restaurant_profile);
+
+router.get('/try', public_controller.get_try);
