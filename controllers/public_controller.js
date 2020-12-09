@@ -8,28 +8,28 @@ exports.get_landing = function(req,res){
 }
 
 exports.get_about = function(req,res){
-    res.render('about', {
+    res.render('static/about', {
 
     });
 
 }
 
 exports.get_contacts = function(req,res){
-    res.render('contacts', {
+    res.render('static/contacts', {
 
     });
 
 }
 
 exports.get_privacy = function(req,res){
-    res.render('privacy', {
+    res.render('static/privacy', {
 
     });
 
 }
 
 exports.get_terms = function(req,res){
-    res.render('terms', {
+    res.render('static/terms', {
 
     });
 
@@ -49,8 +49,8 @@ exports.get_restaurant_profile = function(req,res){
 
 }
 
-exports.get_try = function(req,res){
-    res.render('try', {
+exports.get_customer_profile = function(req,res){
+    res.render('customer/profile', {
 
     });
 
