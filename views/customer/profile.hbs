@@ -8,18 +8,32 @@
     </div>
 
     <div class="customer-details-container">
-      <div>
-        <h4>Details</h4> 
-        <hr>
-        <h6>Address</h6>
-        <p>XX BLDG, XX Street, XXXX City ZIP</p>
-        <h6>Contact</h6>
-        <p>XX XXXX XXXX</p>
-        <h6>Email</h6>
-        <p>XXXXX@XXXX.com</p>
+      <div class="row">
+        <div class="col-4">
+          <h4>Details</h4> 
+          <hr>
+          <h6>Address</h6>
+          <p>XX BLDG, XX Street, XXXX City ZIP</p>
+          <h6>Contact</h6>
+          <p>XX XXXX XXXX</p>
+          <h6>Email</h6>
+          <p>XXXXX@XXXX.com</p>
+        </div>
+        <div class="customer-orders col-8"  id="customer-order-history" >
+          <h4>Order History</h4>
+          <hr>
+          {{>customer_order}}
+          {{>customer_order}}
+          {{>customer_order}}
+          {{>customer_order}}
+          {{>customer_order}}
+          {{>customer_order}}
+          {{>customer_order}}
+
+        </div>
       </div>
     </div>
-  </div>
+    
 
 </div>
 
