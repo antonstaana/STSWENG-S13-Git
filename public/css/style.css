@@ -144,7 +144,62 @@ header{
     height:55vh;
 }
 
+.itemsTitle /* page title */
+{
+    text-align: center;
+    transition: 1s;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    user-select: none;
+    margin: 70px;
+}
 
+#grid_wrapper /* restaurants grid */
+{
+    margin-top: 70px;
+    margin-bottom: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: 280px 280px 280px 280px;
+    row-gap: 50px;
+    max-width: 1020px;
+    transition: 2s;
+    overflow: hidden;
+}
+
+.product_img:hover 
+{
+    transform: scale(1.07)
+}
+
+.product
+{
+    margin-top: 20px;
+    min-width: 180px;
+    min-height: 250px;
+    max-width: 180px;
+    max-height: 250px;
+    text-align: center;
+    position: relative;
+}
+
+.product_img
+{
+    min-width: 180px;
+    min-height: 180px;
+    max-width: 180px;
+    max-height: 180px;
+    object-fit: cover;
+    transition: 0.7s;
+}
+
+.product_name
+{
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 0;
+}
 
 /*Login/Signup Modal*/
 
