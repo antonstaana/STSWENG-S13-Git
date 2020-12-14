@@ -25,7 +25,7 @@ header{
     position: relative;
     width: 100%;
     min-height: 80vh;
-    margin-top: 80px;
+    margin-top: 66px;
 }
 
 .inner-wrapper{
@@ -34,11 +34,6 @@ header{
     margin-left: auto;
     margin-right: auto;
     background-color: whitesmoke;
-    padding: 20px;
-}
-
-.w-header{
-    margin-top: 10px;
 }
 
 .text-center{
@@ -66,6 +61,7 @@ header{
 /*Start of Navbar styles*/
 .navbar {
     position: fixed;
+    height: 66px;
 }
 
 .navbar-custom{
@@ -141,6 +137,12 @@ header{
 }
 
 /*End of Footer Styles*/
+
+/*Landing Styles*/
+
+.landing-photo{
+    height:55vh;
+}
 
 
 
