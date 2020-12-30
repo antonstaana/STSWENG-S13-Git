@@ -49,6 +49,13 @@ exports.get_restaurant_profile = function(req,res){
 
 }
 
+exports.get_search = function(req,res){
+    res.render('search', {
+
+    });
+
+}
+
 exports.get_customer_profile = function(req,res){
     res.render('customer/profile', {
 

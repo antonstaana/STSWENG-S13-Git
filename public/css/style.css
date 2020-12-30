@@ -34,6 +34,8 @@ header{
     margin-left: auto;
     margin-right: auto;
     background-color: whitesmoke;
+    margin-top: 100px;
+
 }
 
 .text-center{
@@ -123,7 +125,7 @@ header{
 }
 
 
-.footer  a, ul{
+.footer  a, .footer ul{
     list-style-type: none;
     color:white;
     list-style-position:inside;
@@ -300,7 +302,7 @@ font-family: 'Spartan' , sans-serif;
 
 
 
-.customer-details-container, .restaurant-profile-pane{
+.customer-details-container, .restaurant-profile-pane, .search-container, .restaurant-reg-container{
     background-color: white;
     padding: 30px;
     height: fit-content;
@@ -333,7 +335,7 @@ font-family: 'Spartan' , sans-serif;
     font-weight:700;
 }
 
-@media(max-width: 1426px) {.menu-card{
+@media(max-width: 1324px) {.menu-card{
     max-width: 100%;
 }}
 
@@ -372,4 +374,18 @@ font-family: 'Spartan' , sans-serif;
 }
 .c-order-item{
     margin-right: 5px;
+}
+
+/*Search Results*/
+
+.search-results{
+
+    display:flex; flex-wrap: wrap; box-sizing: border-box; justify-content:center;
+
+
+}
+
+.search-results::after {
+    content: "";
+    flex:content;
 }

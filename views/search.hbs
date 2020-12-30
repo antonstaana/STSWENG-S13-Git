@@ -1,0 +1,48 @@
+<div class="inner-wrapper" style="margin-top: 100px;"> 
+
+    <div class="search-container" style="margin-top: 20px;"> 
+          <h1>Results for "Smth"</h1>  <h6>Showing 5 results</h6>
+         <hr>
+      <div class="row" style="margin-top: 30px;">
+        <div class="col-md-2" style="color: #63636;" >
+          <h2>Cuisine</h2> 
+          <hr>
+            <div class="cuisine-category form-check">
+              <input class="form-check-input" type="checkbox" id="cuisine-category-1">
+              <label class="form-check-label" for="cuisine-category-1">
+                Filipino
+              </label>
+            </div>
+            <div class="cuisine-category form-check">
+              <input class="form-check-input" type="checkbox" id="cuisine-category-2">
+              <label class="form-check-label" for="cuisine-category-2">
+                Korean
+              </label>
+            </div>
+            <div class="cuisine-category form-check">
+              <input class="form-check-input" type="checkbox" id="cuisine-category-3">
+              <label class="form-check-label" for="cuisine-category-3">
+                Fast Food
+              </label>
+            </div>
+            <div class="cuisine-category form-check">
+              <input class="form-check-input" type="checkbox" id="cuisine-category-4">
+              <label class="form-check-label" for="cuisine-category-4">
+                American
+              </label>
+            </div>
+        </div> 
+        <div class="search-results col-md-10"  id="search-results" >
+          {{>restaurant_card}}
+          {{>restaurant_card}}
+          {{>restaurant_card}}
+          {{>restaurant_card}}
+          {{>restaurant_card}}
+        </div>
+      </div>
+    </div>
+    
+
+</div>
+
+

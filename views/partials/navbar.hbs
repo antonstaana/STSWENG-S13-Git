@@ -2,7 +2,16 @@
     <a class="navbar-brand" href="/"> 
         <img src="assets/LELOGONew.png" width="50" height="50" > LocalEats
     </a> 
-
+    <form action="/search" class="form-inline my-lg-0 ml-auto"  method="GET">
+        <div class="input-group " style="width:100%;">
+            <input id="nav-search" type="text" name="search" class="form-control" placeholder="Search" style="border-radius: 100px 0 0 100px; width:40%;">
+            <div class="input-group-prepend">
+                <button id="nav-btn-search" class="btn" type="submit" style="border-radius: 0 100px 100px 0; background-color:#FFDE59;">
+                    <i class="fa fa-search " style="color:#38B6FF;"></i>
+                </button>
+            </div>
+        </div>
+    </form>
     <div class="ml-auto" style="float:right">
         <button class="btn btn-outline" type="button" data-toggle="modal" data-target="#loginModal">Login</button>
     </div> 
