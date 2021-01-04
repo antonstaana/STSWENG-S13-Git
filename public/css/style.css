@@ -25,7 +25,7 @@ header{
     position: relative;
     width: 100%;
     min-height: 80vh;
-    margin-top: 80px;
+    margin-top: 66px;
 }
 
 .inner-wrapper{
@@ -34,11 +34,8 @@ header{
     margin-left: auto;
     margin-right: auto;
     background-color: whitesmoke;
-    padding: 20px;
-}
+    margin-top: 100px;
 
-.w-header{
-    margin-top: 10px;
 }
 
 .text-center{
@@ -66,6 +63,7 @@ header{
 /*Start of Navbar styles*/
 .navbar {
     position: fixed;
+    height: 66px;
 }
 
 .navbar-custom{
@@ -93,6 +91,17 @@ header{
   
 }
 
+.navbar .customer-profile-dropdown .nav-item .nav-link i{
+    color:#FFDE59;
+    border-radius: 100%;
+}
+
+.navbar .customer-profile-dropdown .nav-item .nav-link i:hover{
+    color:#38B6FF;
+    background-color: #FFDE59;
+}
+
+
 /* Footer Styles*/
 .footer {
     position: relative;
@@ -116,7 +125,7 @@ header{
 }
 
 
-.footer  a, ul{
+.footer  a, .footer ul{
     list-style-type: none;
     color:white;
     list-style-position:inside;
@@ -131,7 +140,68 @@ header{
 
 /*End of Footer Styles*/
 
+/*Landing Styles*/
 
+.landing-photo{
+    height:55vh;
+}
+
+.itemsTitle /* page title */
+{
+    text-align: center;
+    transition: 1s;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    user-select: none;
+    margin: 70px;
+}
+
+#grid_wrapper /* restaurants grid */
+{
+    margin-top: 70px;
+    margin-bottom: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: 280px 280px 280px 280px;
+    row-gap: 50px;
+    max-width: 1020px;
+    transition: 2s;
+    overflow: hidden;
+}
+
+.product_img:hover 
+{
+    transform: scale(1.07)
+}
+
+.product
+{
+    margin-top: 20px;
+    min-width: 180px;
+    min-height: 250px;
+    max-width: 180px;
+    max-height: 250px;
+    text-align: center;
+    position: relative;
+}
+
+.product_img
+{
+    min-width: 180px;
+    min-height: 180px;
+    max-width: 180px;
+    max-height: 180px;
+    object-fit: cover;
+    transition: 0.7s;
+}
+
+.product_name
+{
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 0;
+}
 
 /*Login/Signup Modal*/
 
@@ -232,9 +302,11 @@ font-family: 'Spartan' , sans-serif;
 
 
 
-.customer-details-container, .restaurant-profile-pane{
+.customer-details-container, .restaurant-profile-pane, .search-container, .restaurant-reg-container{
     background-color: white;
     padding: 30px;
+    height: fit-content;
+    border-radius: 20px;
 }
 
 /*Menu Syles*/
@@ -263,11 +335,11 @@ font-family: 'Spartan' , sans-serif;
     font-weight:700;
 }
 
-@media(max-width: 1426px) {.menu-card{
+@media(max-width: 1324px) {.menu-card{
     max-width: 100%;
 }}
 
-.item-picture{
+.restaurant-picture , .item-picture{
     flex: none;
     width: 90px;
     height: 90px;
@@ -277,7 +349,43 @@ font-family: 'Spartan' , sans-serif;
     position: relative;
 }
 
-.item-picture .picture{
+.restaurant-picture .picture , .item-picture .picture{
     width: 100%;
     height: 100%;
+}
+
+/*Orders*/
+.customer-order-card{
+    padding: 15px;
+    position: relative;
+    display: flex;
+    background: #fff;
+    border: 1px solid #38B6FF;
+    justify-content: space-between;
+    border-radius: 10px;
+    margin:10px;
+}
+
+.c-order-list{
+    display: flex;
+    flex-wrap: wrap;
+    font-weight: 100;
+    color: #333333;
+}
+.c-order-item{
+    margin-right: 5px;
+}
+
+/*Search Results*/
+
+.search-results{
+
+    display:flex; flex-wrap: wrap; box-sizing: border-box; justify-content:center;
+
+
+}
+
+.search-results::after {
+    content: "";
+    flex:content;
 }
