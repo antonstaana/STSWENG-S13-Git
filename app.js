@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 
 //routes
 const public_route = require('./routes/public_routes');
+const restaurant_route = require('./routes/restaurant_routes');
 
 const app = express();
 const port = 8000;
@@ -42,4 +43,8 @@ app.get('/', (req,res) =>{
 app.use(express.static('public'));
 
 app.use('/', public_route);
+
+app.use('/restaurant', restaurant_route);
+
+//app.use('/customer', customer_route);
 

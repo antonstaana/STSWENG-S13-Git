@@ -16,10 +16,10 @@
     <a class="nav-link" id="menu-tab" data-toggle="tab" href="#menu" role="tab" aria-controls="menu" aria-selected="false">Menu</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="review" aria-selected="false">Ratings and Reviews</a>
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Ratings and Reviews</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="order" aria-selected="false">Order</a>
+    <a class="nav-link" id="messages-tab" data-toggle="tab" href="#order" role="tab" aria-controls="order" aria-selected="false">Order</a>
   </li>
 </ul>
 
@@ -38,11 +38,50 @@
         <p>XX BLDG, XX Street, XXXX City ZIP</p>
         <h6>Contact</h6>
         <p>XX XXXX XXXX</p>
+        {{#if restaurant_user}}
+          <div class="my-lg-0 inverted-color-button">
+            <button class="btn btn-outline" type="button">Edit</button>
+          </div> 
+        {{/if}}
       </div>
     </div>
   </div>
   <div class="tab-pane" id="menu" role="tabpanel" aria-labelledby="menu-tab">
     <div class="menu-container">
+      {{#if restaurant_user}}
+          <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" data-target="#addItem" style="background:#38B6FF; border-color:#38B6FF; font-weight:bolder; color:#FFDE59">Add new item</button>
+          <div class="collapse" id="addItem" style="margin-top: 20px;">
+              <div class="addTaskContainer">
+                  <form method="post">
+                    <div class="border border-secondary rounded">
+                        <div class="row" style="padding: 10px;">
+                          <div class="col-sm-6">
+                            <input type="text" id="new-item-name"  placeholder="Item Name" class="form-control">
+                          </div>
+                        </div>
+                        <div class="row" style="padding: 10px;">
+                            <div class="col">
+                                <textarea class="form-control" rows="3" maxlength="500" id="taskDesc" placeholder="Description" stye="resize:none; width:80%; margin: 5 auto;"></textarea>
+                            </div>
+                        </div>
+                        <div class="row" style="padding: 10px;">
+                            <div class="col-sm-7">
+                                <input type="number" id="new-item-price"  placeholder="Price" class="form-control" maxlength="4">
+                            </div> <br><br>
+                        </div>
+                        <div class="row" style="padding: 10px;">
+                            <div class="col-sm-12" align="right">
+                                <div>
+                                    <button type="button" id="publishItemBTN" class="btn btn-info add-new"><i class="fa fa-plus"></i> Publish</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </form>
+              </div>
+            </div>
+          <hr>           
+      {{/if}}
       <div class="menu-list ">
         {{>menu_item}}
         {{>menu_item}}
@@ -52,7 +91,13 @@
       </div>
     </div>
   </div>
-  <div class="tab-pane" id="review" role="tabpanel" aria-labelledby="review-tab">Ratings and Reviews</div>
+  <div class="tab-pane" id="review" role="tabpanel" aria-labelledby="review-tab">
+    <div class="menu-container">
+      <div class="menu-list ">
+        <h1> Hello </h1>
+      </div>
+    </div>
+  </div>
   <div class="tab-pane" id="order" role="tabpanel" aria-labelledby="order-tab">Order</div>
 </div>
 

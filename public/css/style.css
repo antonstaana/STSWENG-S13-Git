@@ -1,4 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Spartan:wght@900&display=swap');
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
 
 html{
     position:relative;
@@ -42,6 +49,19 @@ header{
     text-align: center;
 }
 
+.inverted-color-button .btn-outline{
+    color: #38B6FF;
+    border-color: #38B6FF;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+
+.inverted-color-button .btn-outline:hover{
+    background: #38B6FF;
+    color: #FFDE59;
+    border-color: #38B6FF;
+}
+
 
 /*headers styles*/
 
@@ -63,7 +83,6 @@ header{
 /*Start of Navbar styles*/
 .navbar {
     position: fixed;
-    height: 66px;
 }
 
 .navbar-custom{
@@ -143,7 +162,7 @@ header{
 /*Landing Styles*/
 
 .landing-photo{
-    height:55vh;
+    height:40vh;
 }
 
 .itemsTitle /* page title */
@@ -261,8 +280,9 @@ font-family: 'Spartan' , sans-serif;
   background: #38B6FF;
   color: #FFDE59;
   border-color: #38B6FF;
-  
 }
+
+
 
 /*Terms of Service*/
 
@@ -302,11 +322,12 @@ font-family: 'Spartan' , sans-serif;
 
 
 
-.customer-details-container, .restaurant-profile-pane, .search-container, .restaurant-reg-container{
+.customer-details-container, .restaurant-profile-pane, .search-container, .restaurant-reg-container{  /*Containers with no photo*/
     background-color: white;
     padding: 30px;
     height: fit-content;
     border-radius: 20px;
+    margin-bottom: 20px;
 }
 
 /*Menu Syles*/
@@ -321,7 +342,6 @@ font-family: 'Spartan' , sans-serif;
 .menu-card{
     padding: 20px;
     position: relative;
-    display: flex;
     background: #fff;
     border: 1px solid #38B6FF;
     justify-content: space-between;
@@ -379,10 +399,7 @@ font-family: 'Spartan' , sans-serif;
 /*Search Results*/
 
 .search-results{
-
     display:flex; flex-wrap: wrap; box-sizing: border-box; justify-content:center;
-
-
 }
 
 .search-results::after {

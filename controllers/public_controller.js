@@ -2,14 +2,13 @@ const mongoose = require('mongoose');
 
 exports.get_landing = function(req,res){
     res.render('landing', {
-
     });
 
 }
 
 exports.get_about = function(req,res){
     res.render('static/about', {
-
+        title:'LocalEats - About'
     });
 
 }
@@ -58,7 +57,6 @@ exports.get_search = function(req,res){
 
 exports.get_customer_profile = function(req,res){
     res.render('customer/profile', {
-
     });
 
 }
