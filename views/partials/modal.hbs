@@ -20,7 +20,7 @@
                 <div class="tab-content" >
                     <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="home-tab" >
 
-                        <form method='POST' name="login" action='/login'>
+                        <form method='POST' onsubmit="return validateLogin()" name="login"> <!-- action='/login' -->
                                 <div class="form-group">
                                     <label for="email" >Email address</label>
                                     <div class="input-group pb-modalreglog-input-group">
@@ -33,13 +33,21 @@
                                         <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                                     </div>
                                 </div>
+                                 <p id="loginError" class="error">  </p>
                                 <div style="text-align: center;">
                                     <button class="btn btn-outline" type="submit" >Login</button>
                                 </div>
                         </form>
                     </div>
                     <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="profile-tab">
-                        <form method='POST' name="register_customer" action='/register_customer'>
+                        <div style="text-align: center;">
+                            <h9>
+                                <a href="/restaurant_registration">
+                                    Restaurant?
+                                </a>
+                            </h9>
+                        </div>
+                        <form method='POST' onsubmit="return validateRegister()" name="register_customer">
                             <div class="form-group">
                                 <label for="email">Email address</label>
                                 <div class="input-group pb-modalreglog-input-group">
@@ -47,9 +55,15 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="username">Username</label>
+                                <label for="username">First name</label>
                                 <div class="input-group pb-modalreglog-input-group">
                                     <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="displayname">Last Name</label>
+                                <div class="input-group pb-modalreglog-input-group">
+                                    <input type="text" class="form-control" id="displayname" name="displayname" placeholder="Display Name">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -66,19 +80,13 @@
                             </div>
                             <!-- Additional -->
                             <div class="form-group">
-                                <label for="displayname">Display Name</label>
-                                <div class="input-group pb-modalreglog-input-group">
-                                    <input type="text" class="form-control" id="displayname" name="displayname" placeholder="Display Name">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="street">Street Address</label>
+                                <label for="street">Street Address <h6>(Optional)</h6></label>
                                 <div class="input-group pb-modalreglog-input-group">
                                     <input type="text" class="form-control" id="street" name="street" placeholder="Street Address">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="city_province">City / Province</label>
+                                <label for="city_province">City / Province <h6>(Optional)</h6></label>
                                 <div class="input-group pb-modalreglog-input-group">
                                     <input type="text" class="form-control" id="city_province" name="city_province" placeholder="City / Province}">
                                 </div>
@@ -90,22 +98,16 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="image">Upload Image</label>
+                                <label for="image">Upload  <h6>(Optional)</h6></label>
                                 <div class="input-group pb-modalreglog-input-group">
                                     <input type="file" class="form-control" id="image" name="image">
                                 </div>
                             </div>
+                            <p id="registerError" class="error">  </p>
                             <div style="text-align: center;">
                                 <button class="btn btn-outline" type="submit" >Signup</button>
                             </div>
                         </form>
-                        <div style="text-align: center;">
-                            <h9>
-                                <a href="/restaurant_registration">
-                                    Restaurant?
-                                </a>
-                            </h9>
-                        </div>
                     </div>
                 </div>
             </div>

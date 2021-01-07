@@ -12,8 +12,8 @@ const registerCustomerValidation = [
       return true;
     }),
   body('displayname').not().isEmpty().withMessage("Display Name is required."),
-  body('street').not().isEmpty().withMessage("Street is required."),
-  body('city_province').not().isEmpty().withMessage("city_province is required."),
+ // body('street').not().isEmpty().withMessage("Street is required."),
+ // body('city_province').not().isEmpty().withMessage("city_province is required."),
   body('contactno').not().isEmpty().withMessage("Enter Contact No.").isLength({min : 11}).withMessage("Enter valid contact number")
 ];
 

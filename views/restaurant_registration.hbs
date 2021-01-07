@@ -4,7 +4,7 @@
             Restaurant Registration Form
         </h1>
         <p class="text-center">
-            <form method="POST" class="restaurant-registration-form" name="register_restaurant" action="/register_restaurant">
+            <form method="POST" class="restaurant-registration-form" name="register_restaurant" onsubmit="return validateRestoRegister()">
                                 <div class="form-group">
                                     <label for="email" >Email address</label>
                                     <div class="input-group pb-modalreglog-input-group">
@@ -18,7 +18,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="password">Display Name</label>
+                                    <label for="password">Restaurant Name</label>
                                     <div class="input-group pb-modalreglog-input-group">
                                         <input type="text" class="form-control" id="displayname" name="displayname" placeholder="Displayname">
                                     </div>
@@ -60,11 +60,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="image">Upload Image</label>
+                                    <label for="image">Upload Image (Optional)</label>
                                     <div class="input-group pb-modalreglog-input-group">
                                         <input type="file" class="form-control" id="image" name="image">
                                     </div>
                                 </div>
+                                <p id="registerError" class="error">  </p>
                                 <div style="text-align: center;">
                                     <button class="btn btn-outline" type="submit">Signup</button>
                                 </div>

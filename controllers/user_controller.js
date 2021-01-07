@@ -7,7 +7,6 @@ const {validationResult} = require('express-validator');
 exports.register_customer = function(req,res){
 /**/
   const errors = validationResult(req);
-  console.log(errors);
 
   if(errors.isEmpty()){
 /**/
@@ -17,7 +16,7 @@ exports.register_customer = function(req,res){
       if(result){
         console.log("Email already used");
         req.flash('error_msg', 'Email already used');
-        res.redirect('/');
+        res.send({status: 401});
       } else {
         const saltRounds = 10;
         bcrypt.hash(password, saltRounds, function(err, hashed){
@@ -70,9 +69,15 @@ exports.register_customer = function(req,res){
                   res.redirect('/');
                 }
                 else{
+                  req.session.user = user._id;
+                  req.session.name = user.email;
+                  req.session.model = newCustomer;
+                  req.session.usertype = newUser.usertype;   
+                  console.log("The Session");
+                  console.log(req.session);
                   console.log("You are now registered as a customer!")
                   req.flash("success_msg", 'You are now registered!');
-                  res.redirect('/customer/profile');
+                  res.send({status: 200});
                 }
               })
             }
@@ -82,9 +87,9 @@ exports.register_customer = function(req,res){
     });
 /**/
   } else {
+    console.log(errors);
     const messages = errors.array().map((item) => item.msg);
     req.flash('error_msg', messages.join(' '));
-    res.redirect('/');
   }
 /**/
 };
@@ -92,7 +97,7 @@ exports.register_customer = function(req,res){
 exports.register_restaurant = function(req,res){
 
   const errors = validationResult(req);
-  console.log(errors);
+  
 
   if(errors.isEmpty()){
     const {email, username, displayname, category, street, city_province, contactno, password, password2} = req.body;  //MISSING IMG
@@ -100,7 +105,7 @@ exports.register_restaurant = function(req,res){
       if(result){
         console.log("Email already used");
         req.flash('error_msg', 'Email already used');
-        res.redirect('/');
+        res.send({status: 401});
       } else {
         const saltRounds = 10;
         bcrypt.hash(password, saltRounds, function(err, hashed){
@@ -157,9 +162,15 @@ exports.register_restaurant = function(req,res){
                         res.redirect('/');
                     }
                     else{
+                        req.session.user = user._id;
+                        req.session.name = user.email;
+                        req.session.model = newRestaurant;
+                        req.session.usertype = newUser.usertype;   
+                        console.log("The Session");
+                        console.log(req.session);
                         console.log("You are now registered as a restaurant!")
                         req.flash("success_msg", 'You are now registered!');
-                        res.redirect('/');
+                        res.send({status: 200});
                     }
                 })
 
@@ -170,108 +181,117 @@ exports.register_restaurant = function(req,res){
     });
 /**/
   } else {
+      console.log(errors[0]);
     const messages = errors.array().map((item) => item.msg);
     req.flash('error_msg', messages.join(' '));
-    res.redirect('/');
+    //res.redirect('/');
   }
 /**/
 };
 
 exports.login = function(req,res){
   const {email, password} = req.body;
+  const errors = validationResult(req);
+  console.log(errors);
 
-  console.log("email: ", email);
-  console.log("password: ", password);
+  if(errors.isEmpty()){
+    userModel.getOne({ email: email }, (err, user) => {
+        if (err) {
+        // Database error occurred...
+        console.log("Database Error!");
+        req.flash('error_msg', 'Database Error!');
+        res.send({status: 500});
+        } else {
+        // Successful query
+        if (user) {
+            // Customer found!
+            console.log("User " + email + " found!");
+            // Check password with hashed value in the database
+            console.log("Comparing password bcrypt hash of (", password, ") to user.password ", user.password);
+        bcrypt.compare(password, user.password, (err, result) => {
+            // passwords match (result == true)
+            if (result) {
+            // Update session object once matched!
+            req.session.user = user._id;
+            req.session.name = user.email;
+            //req.session.model = user;
+            //console.log(req.session);
 
-  userModel.getOne({ email: email }, (err, user) => {
-    if (err) {
-      // Database error occurred...
-      console.log("Database Error!");
-      req.flash('error_msg', 'Database Error!');
-      res.redirect('/');
-    } else {
-      // Successful query
-      if (user) {
-        // Customer found!
-        console.log("User " + email + " found!");
-        // Check password with hashed value in the database
-        console.log("Comparing password bcrypt hash of (", password, ") to user.password ", user.password);
-      bcrypt.compare(password, user.password, (err, result) => {
-        // passwords match (result == true)
-        if (result) {
-          // Update session object once matched!
-          req.session.user = user._id;
-          req.session.name = user.email;
-          //req.session.model = user;
-          //console.log(req.session);
-
-          if (user.usertype == "customer") {
-            customerModel.getOne({uID : user._id}, (err, customer) => {
-              if (err){
-                // Database error occurred...
-                console.log("Database Error!");
-                req.flash('error_msg', 'Database Error!');
-                res.redirect('/');
-              }
-              else{
-                  if (customer){
-                    console.log("Customer found");
-                    req.session.model = customer;
-                    req.session.usertype = user.usertype;           
-                    res.redirect('/customer/profile');
-                  }
-                  else{
-                    console.log("Customer not found");           
-                    res.redirect('/');
-                  }
-              }
-            });
-
-          } else if (user.usertype == "restaurant") {
-            restaurantModel.getOne({uID: user._id}, (err, restaurant) =>{
-                if(err){
-                    //Database error occurred...
+            if (user.usertype == "customer") {
+                customerModel.getOne({uID : user._id}, (err, customer) => {
+                if (err){
+                    // Database error occurred...
                     console.log("Database Error!");
                     req.flash('error_msg', 'Database Error!');
                     res.redirect('/');
-            
                 }
                 else{
-                    if(restaurant){
-                        console.log("Restaurant found");
-                        req.session.model = restaurant;
-                        req.session.usertype = user.usertype;   
-                        res.redirect('/restaurant/profile');
+                    if (customer){
+                        console.log("Customer found");
+                        req.session.model = customer;
+                        req.session.usertype = user.usertype;           
+                        //res.redirect('/customer/profile');
+                        res.send({status: 'customer'});
                     }
                     else{
-                        console.log("Restaurant not found");
+                        console.log("Customer not found");           
                         res.redirect('/');
                     }
-                  }
-                })
-          } else {
-            res.redirect('/');
-          }
+                }
+                });
 
+            } else if (user.usertype == "restaurant") {
+                restaurantModel.getOne({uID: user._id}, (err, restaurant) =>{
+                    if(err){
+                        //Database error occurred...
+                        console.log("Database Error!");
+                        req.flash('error_msg', 'Database Error!');
+                        res.redirect('/');
+                
+                    }
+                    else{
+                        if(restaurant){
+                            console.log("Restaurant found");
+                            req.session.model = restaurant;
+                            req.session.usertype = user.usertype;   
+                            res.send({status: 'restaurant'});
+                        }
+                        else{
+                            console.log("Restaurant not found");
+                            res.redirect('/');
+                        }
+                    }
+                    })
+            } else {
+                res.redirect('/');
+            }
+
+            } else {
+            // passwords don't match
+            console.log("Incorrect password for" + email + ". Please try again.");
+            req.flash('error_msg', 'Incorrect password. Please try again.');
+            res.send({status: 401});
+            }
+        });
         } else {
-          // passwords don't match
-          console.log("Incorrect password for" + email + ". Please try again.");
-          req.flash('error_msg', 'Incorrect password. Please try again.');
-          res.redirect('/');
+            // No User found
+            console.log("Unregistered Email.");
+            req.flash('error_msg', 'Unregistered Email.');
+            res.send({status : 409});
         }
-      });
-      } else {
-        // No customer found
-        console.log("Unregistered Email.");
-        req.flash('error_msg', 'Unregistered Email.');
-        res.redirect('/');
-      }
-    }});
+        }}
+        )
+    } else {
+        //Missing Credentials
+           const messages = errors.array().map((item) => item.msg);
+            req.flash('error_msg', messages.join(' '));
+    };
 };
 
 exports.logout = (req, res) => {
   if (req.session) {
     req.session.destroy(() => {
+        console.log("Logged out.")
       res.clearCookie('connect.sid');
       res.redirect('/');
     });
