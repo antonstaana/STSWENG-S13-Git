@@ -16,7 +16,34 @@
                 </div>
             </div>
         </form>
-        <ul class="nav navbar-nav text-center">
+        <ul class="nav navbar-nav text-center navbaritems" >
+            {{#if usertype}}
+                {{#if (isRestaurant usertype)}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/restaurant/profile">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Reviews</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline" role="button" href="/logout" >Logout</a>
+                    </li>
+                {{/if}}
+                {{#if (isCustomer usertype)}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/customer/profile" >Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline" role="button" href="/logout" >Logout</a>
+                    </li>
+                {{/if}}
+            {{else}}
             <li class="my-1"> 
                     <button class="btn btn-outline"  data-toggle="modal" data-target="#loginModal">Login</button>
             </li>
@@ -35,6 +62,7 @@
                     </div>   
                 </div>
             </li>
+            {{/if}}
         </ul>
     </div>
 </nav>

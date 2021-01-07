@@ -3,7 +3,13 @@
         <img align="left" class="restaurant-image-lg" src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>
         <img align="left" class="restaurant-image-profile thumbnail" src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" alt="Profile image example"/>
         <div class="restaurant-profile-text">
-            <h1>Restaurant Name</h1>
+            <h1>
+              {{#if (isRestaurant usertype)}}
+                {{restaurant_name}}
+                {{else}}
+                  Restaurant Name
+              {{/if}}
+            </h1>
         </div>
     </div>
 
@@ -31,14 +37,31 @@
         <hr>
         <h4>Details</h4> 
         <h6 class="restaurant-category">Category/Cuisine</h6>
-        <p>Food Cuisine</p>
+
+          {{#if (isRestaurant usertype)}}
+              {{restaurant_category}}
+          {{else}}
+             <p>Food Cuisine</p>
+          {{/if}}
         <h6>Operating Hours</h6>
         <p style="color:#38B6FF">XX:XXxx - XX:XXxx</p>
         <h6>Address</h6>
-        <p>XX BLDG, XX Street, XXXX City ZIP</p>
+        <p>
+          {{#if (isRestaurant usertype)}}
+              {{restaurant_location}}
+          {{else}}
+              Location XXXX
+          {{/if}}
+        </p>
         <h6>Contact</h6>
-        <p>XX XXXX XXXX</p>
-        {{#if restaurant_user}}
+        <p>
+          {{#if (isRestaurant usertype)}}
+              {{restaurant_contactno}}
+          {{else}}
+              XXXXXXXXXXX
+          {{/if}}
+        </p>
+        {{#if (isRestaurant usertype)}}
           <div class="my-lg-0 inverted-color-button">
             <button class="btn btn-outline" type="button">Edit</button>
           </div> 
@@ -48,7 +71,7 @@
   </div>
   <div class="tab-pane" id="menu" role="tabpanel" aria-labelledby="menu-tab">
     <div class="menu-container">
-      {{#if restaurant_user}}
+      {{#if (isRestaurant usertype)}}
           <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" data-target="#addItem" style="background:#38B6FF; border-color:#38B6FF; font-weight:bolder; color:#FFDE59">Add new item</button>
           <div class="collapse" id="addItem" style="margin-top: 20px;">
               <div class="addTaskContainer">

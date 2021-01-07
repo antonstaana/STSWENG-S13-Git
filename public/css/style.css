@@ -96,6 +96,15 @@ header{
     padding: 0;
 } 
 
+.navbaritems .nav-item .nav-link{
+    font-weight: 500;
+    color:#FFDE59;
+}
+
+.navbaritems .nav-item .nav-link:hover{
+    text-decoration: underline;
+}
+
 .btn-outline{
     color: #FFDE59;
     border-color:#FFDE59;

@@ -1,60 +1,72 @@
 <div class="inner-wrapper white-back">
-   <div class="restaurant-reg-containerx`">
+   <div class="restaurant-reg-container">
         <h1 class="text-center">
             Restaurant Registration Form
         </h1>
         <p class="text-center">
-             <form class="restaurant-registration-form">
+            <form method="POST" class="restaurant-registration-form" name="register_restaurant" action="/register_restaurant">
                                 <div class="form-group">
                                     <label for="email" >Email address</label>
                                     <div class="input-group pb-modalreglog-input-group">
-                                        <input type="email" class="form-control" id="email" placeholder="Email">
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Username</label>
                                     <div class="input-group pb-modalreglog-input-group">
-                                        <input type="text" class="form-control" id="username" placeholder="Username">
+                                        <input type="text" class="form-control" id="username" name="username" placeholder="Username">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Display Name</label>
                                     <div class="input-group pb-modalreglog-input-group">
-                                        <input type="text" class="form-control" id="dp-name" placeholder="Displayname">
+                                        <input type="text" class="form-control" id="displayname" name="displayname" placeholder="Displayname">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Category</label>
                                     <div class="input-group pb-modalreglog-input-group">
-                                        <input type="text" class="form-control" id="category" placeholder="Category">
+                                        <input type="text" class="form-control" id="category" name="category" placeholder="Category">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="password">Location</label>
+                                    <label for="street">Street Address</label>
                                     <div class="input-group pb-modalreglog-input-group">
-                                        <input type="text" class="form-control" id="location" placeholder="Location">
+                                        <input type="text" class="form-control" id="street" name="street" placeholder="Street Address">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="city_province">City / Province</label>
+                                    <div class="input-group pb-modalreglog-input-group">
+                                        <input type="text" class="form-control" id="city_province" name="city_province" placeholder="City / Province">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Contact Number</label>
                                     <div class="input-group pb-modalreglog-input-group">
-                                        <input type="text" class="form-control" id="contact-num" placeholder="Contact-Number">
+                                        <input type="number" class="form-control" id="contactno" name="contactno" placeholder="Contact-Number">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
                                     <div class="input-group pb-modalreglog-input-group">
-                                        <input type="password" class="form-control" id="pws" placeholder="Password">
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Confirm Password</label>
                                     <div class="input-group pb-modalreglog-input-group">
-                                        <input type="password" class="form-control" id="confirm-pws" placeholder="Password">
+                                        <input type="password" class="form-control" id="password2" name="password2" placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="image">Upload Image</label>
+                                    <div class="input-group pb-modalreglog-input-group">
+                                        <input type="file" class="form-control" id="image" name="image">
                                     </div>
                                 </div>
                                 <div style="text-align: center;">
-                                    <button class="btn btn-outline" type="submit" >Login</button>
+                                    <button class="btn btn-outline" type="submit">Signup</button>
                                 </div>
                         </form>
                     </div>

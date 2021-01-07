@@ -1,9 +1,9 @@
 <div class="inner-wrapper">
     <div class="customer-profile-header">
-        <img align="left" class="customer-image-lg" src="assets/customer-header-img.jpg" alt="Profile image example"/>
-        <img align="left" class="customer-image-profile thumbnail" src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" alt="Profile image example"/>
+        <img align="left" class="customer-image-lg" src="../assets/customer-header-img.jpg" alt="Profile image example"/>
+        <img align="left" class="customer-image-profile thumbnail" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Profile image example"/>
         <div class="customer-profile-text">
-            <h1>Customer Name</h1>
+            <h1>{{customer_name}}</h1>
         </div>
     </div>
 
@@ -13,11 +13,11 @@
           <h4>Details</h4> 
           <hr>
           <h6>Address</h6>
-          <p>XX BLDG, XX Street, XXXX City ZIP</p>
+          <p>{{customer_address}}</p>
           <h6>Contact</h6>
-          <p>XX XXXX XXXX</p>
+          <p>{{customer_contact}}</p>
           <h6>Email</h6>
-          <p>XXXXX@XXXX.com</p>
+          <p>{{customer_email}}</p>
           <div class="my-lg-0 inverted-color-button">
             <button class="btn btn-outline" type="button">Edit</button>
           </div> 
