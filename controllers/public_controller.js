@@ -1,51 +1,29 @@
 const mongoose = require('mongoose');
-/*
-    if(req.session.usertype == 'customer'){
-        res.render('landing', {
-            usertype: req.session.usertype,
-        });
-    } else if (req.session.usertype == 'restaurant'){
-        res.render('landing', {
-            restaurant_user:true,
-        });
-    }
-    else {
-        res.render('landing', {
-        });
-    }      
-*/
-/*
-exports.get_landing = function(req,res){
-    if(req.session.usertype == 'customer'){
-        res.render('landing', {
-            usertype: req.session.usertype,
-            logged_in:true,
-        });
-    } else if (req.session.usertype == 'restaurant'){
-        res.render('landing', {
-            restaurant_user:true,
-            logged_in:true,
-        });
-    }
-    else {
-        res.render('landing', {
-        });
-    }       
-}*/
+const restaurant_model = require('../models/restaurants');
 
 exports.get_landing = function(req,res){
     if(req.session.usertype){
-        res.render('landing', {
-            usertype: req.session.usertype,
-            logged_in:true,
+        restaurant_model.get_all({}, function (restaurant_list){
+            res.render('landing', {
+                title: 'LocalEats',
+                usertype: req.session.usertype,
+                logged_in:true,
+                restaurant_list
+            });
         });
     }
     else {
-        res.render('landing', {
+        restaurant_model.get_all({}, function (restaurant_list){
+            res.render('landing', {
+                title: 'LocalEats',
+                restaurant_list
+            });
         });
     }       
 }
 
+
+//Static Pages
 exports.get_about = function(req,res){
     if(req.session.usertype){
         res.render('static/about', {
@@ -97,6 +75,7 @@ exports.get_terms = function(req,res){
         });
     }      
 }
+//End of Static Pages
 
 exports.get_restaurant_registration = function(req,res){
     res.render('restaurant_registration', {

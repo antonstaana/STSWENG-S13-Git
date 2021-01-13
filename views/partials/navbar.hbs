@@ -19,7 +19,7 @@
         <ul class="nav navbar-nav text-center navbaritems" >
             {{#if usertype}}
                 {{#if (isRestaurant usertype)}}
-                    <li class="nav-item">
+                    <li class="nav-item" id="restaurant-navbar">
                         <a class="nav-link" href="/restaurant/profile">Profile</a>
                     </li>
                     <li class="nav-item">
@@ -33,7 +33,7 @@
                     </li>
                 {{/if}}
                 {{#if (isCustomer usertype)}}
-                    <li class="nav-item">
+                    <li class="nav-item" id="customer-navbar">
                         <a class="nav-link" href="/customer/profile" >Profile</a>
                     </li>
                     <li class="nav-item">

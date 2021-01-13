@@ -8,9 +8,9 @@ const productSchema = new mongoose.Schema({
         data: Buffer,
         contentType: String
     },
-    stock: {type:Number, required: true},
-    category: {type:String, required: true},
-    availability: {type:Boolean, required: true}
+    //stock: {type:Number, required: true},
+    //category: {type:String, required: true},
+    //availability: {type:Boolean, required: true}
 },{
         toObject: {
             virtuals: true,
@@ -20,4 +20,13 @@ const productSchema = new mongoose.Schema({
         }
 });
 
-module.exports = mongoose.model('products', productSchema);
+const productModel = mongoose.model('products', productSchema);
+
+/*productSchema.create = function(obj, next) {
+    const product = new productModel(obj);
+
+    product.save(function);
+}
+
+module.exports = 
+*/

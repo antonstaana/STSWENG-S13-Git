@@ -18,43 +18,7 @@
     <h2 class="itemsTitle">All Restaurants</h2>
 
 <div id="grid_wrapper">
-    <div class="product">
-        <img src="assets/resto.png" class="product_img">
-        <p class="product_name">Lemons and Herbs</p>
-    </div>
-
-    <div class="product">
-        <img src="assets/resto.png" class="product_img">
-        <p class="product_name">Lemons and Herbs</p>
-    </div>
-
-    <div class="product">
-        <img src="assets/resto.png" class="product_img">
-        <p class="product_name">Lemons and Herbs</p>
-    </div>
-
-    <div class="product">
-        <img src="assets/resto.png" class="product_img">
-        <p class="product_name">Lemons and Herbs</p>
-    </div>
-
-    <div class="product">
-        <img src="assets/resto.png" class="product_img">
-        <p class="product_name">Lemons and Herbs</p>
-    </div>
-
-    <div class="product">
-        <img src="assets/resto.png" class="product_img">
-        <p class="product_name">Lemons and Herbs</p>
-    </div>
-
-    <div class="product">
-        <img src="assets/resto.png" class="product_img">
-        <p class="product_name">Lemons and Herbs</p>
-    </div>
-
-    <div class="product">
-        <img src="assets/resto.png" class="product_img">
-        <p class="product_name">Lemons and Herbs</p>
-    </div>
+    {{#each restaurant_list}}
+        {{>landing_restaurant restaurants = this}}
+    {{/each}}
 </div>

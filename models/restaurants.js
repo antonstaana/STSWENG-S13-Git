@@ -1,15 +1,15 @@
 const mongoose = require('./connection');
-const products = require('./products');
+const products_model = require('./products');
 const orders = require('./orders');
 const ratings = require('./ratings');
-const customerModel = require('./customers');
+const { nextTick } = require('async');
 
 const restaurantSchema = new mongoose.Schema({
     uID : {type:String},
     email : {type:String, required: true}, //validation important
     password : {type:String, required: true}, //validation important
     username :{type:String, required: true},
-    displayname :{type:String, required: true},
+    displayname :{type:String, required: true}, //Restaurant name
     bio :{type:String},
     category :{type:String},
     storehours :{type:String}, //Reconsider Handling
@@ -47,10 +47,26 @@ restaurantModel.create = function(obj, next) {
     });
 };
 
-restaurantModel.getOne = function(query, next){
+restaurantModel.getOne = function(query, callback){
     restaurantModel.findOne(query, function(err, restaurant) {
-        next(err, restaurant);
+        if(err) throw err;
+        callback(restaurant.toObject());
     });
 };
+
+restaurantModel.get_all = function(query, callback){
+    restaurantModel.find(query, function(err, restaurants) {
+        if(err) throw err;
+        var restaurant_objects = [];
+
+        restaurants.forEach(function(restaurant) {
+            restaurant_objects.push(restaurant.toObject());
+        });
+
+        callback(restaurant_objects);
+    });
+}
+
+//restaurantModel.addProduct = function
 
 module.exports = restaurantModel;

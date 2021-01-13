@@ -149,13 +149,14 @@ function validateRestoRegister() {
 };
 
 $(document).ready(function() {
-
-
-
   $('body').on('click', '.restaurant-card', function() {
     window.location.href = "/restaurant_profile";
 
     });
-  });   
 
-  
+    
+$('body').on('click', '.r-landing-card', function() {
+  let id = $(this).attr('data');
+  window.location.href = "/restaurant/" + id;
+  });
+});   

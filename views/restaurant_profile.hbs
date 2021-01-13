@@ -7,7 +7,7 @@
               {{#if (isRestaurant usertype)}}
                 {{restaurant_name}}
                 {{else}}
-                  Restaurant Name
+                  {{restaurant.displayname}}
               {{/if}}
             </h1>
         </div>
@@ -41,7 +41,7 @@
           {{#if (isRestaurant usertype)}}
               {{restaurant_category}}
           {{else}}
-             <p>Food Cuisine</p>
+             <p>{{restaurant.category}}</p>
           {{/if}}
         <h6>Operating Hours</h6>
         <p style="color:#38B6FF">XX:XXxx - XX:XXxx</p>
@@ -50,7 +50,7 @@
           {{#if (isRestaurant usertype)}}
               {{restaurant_location}}
           {{else}}
-              Location XXXX
+              {{restaurant.location}}
           {{/if}}
         </p>
         <h6>Contact</h6>
@@ -58,7 +58,7 @@
           {{#if (isRestaurant usertype)}}
               {{restaurant_contactno}}
           {{else}}
-              XXXXXXXXXXX
+              {{restaurant.contactno}}
           {{/if}}
         </p>
         {{#if (isRestaurant usertype)}}
