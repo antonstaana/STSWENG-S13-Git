@@ -214,7 +214,7 @@ header{
     max-height: 250px;
     text-align: center;
     position: relative;
-
+    cursor:pointer;
 }
 
 .r-landing-card .product_img
@@ -225,6 +225,7 @@ header{
     max-height: 180px;
     object-fit: cover;
     transition: 0.7s;
+    border-radius: 20px;
 }
 
 .r-landing-card .product_name
@@ -334,7 +335,7 @@ font-family: 'Spartan' , sans-serif;
 
 
 
-.customer-details-container, .restaurant-profile-pane, .search-container, .restaurant-reg-container{  /*Containers with no photo*/
+.customer-details-container, .restaurant-profile-pane, .search-container, .restaurant-reg-container , .padded-container{  /*Containers with no photo*/
     background-color: white;
     padding: 30px;
     height: fit-content;

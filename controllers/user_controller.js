@@ -198,7 +198,7 @@ exports.login = function(req,res){
     userModel.getOne({ email: email }, (err, user) => {
         if (err) {
         // Database error occurred...
-        console.log("Database Error!");
+        console.log("Database Error!1");
         req.flash('error_msg', 'Database Error!');
         res.send({status: 500});
         } else {
@@ -221,13 +221,13 @@ exports.login = function(req,res){
                 customerModel.getOne({uID : user._id}, (err, customer) => {
                 if (err){
                     // Database error occurred...
-                    console.log("Database Error!");
+                    console.log("Database Error!2");
                     req.flash('error_msg', 'Database Error!');
                     res.redirect('/');
                 }
                 else{
                     if (customer){
-                        console.log("Customer found");
+                        console.log("Customer found and Logged in");
                         req.session.model = customer;
                         req.session.usertype = user.usertype;           
                         //res.redirect('/customer/profile');
@@ -244,7 +244,8 @@ exports.login = function(req,res){
                 restaurantModel.getOne({uID: user._id}, (err, restaurant) =>{
                     if(err){
                         //Database error occurred...
-                        console.log("Database Error!");
+                        console.log(err);
+                        console.log("Here")
                         req.flash('error_msg', 'Database Error!');
                         res.redirect('/');
                 

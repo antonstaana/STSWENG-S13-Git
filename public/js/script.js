@@ -68,7 +68,7 @@ function validateRegister() {
   }
   else{
     
-    $.post('/register_customer', {email:email, username:username, password:password, password2:confirmPassword, displayname: displayname, street:street, city_province:city_province, contactno:contactno}, function(res) {
+    $.post('register_customer', {email:email, username:username, password:password, password2:confirmPassword, displayname: displayname, street:street, city_province:city_province, contactno:contactno}, function(res) {
       switch(res.status){
         case 200: {
           window.location.href = "/customer/profile";
@@ -87,8 +87,6 @@ function validateRegister() {
     return false;
   }
 };
-
-
 
 
 function validateRestoRegister() {
@@ -148,6 +146,17 @@ function validateRestoRegister() {
   }
 };
 
+function newProduct() {
+  var name = document.forms["addnewProduct"]["new-item-name"].value;
+  var desc = document.forms["addnewProduct"]["new-item-desc"].value;
+  var price = document.forms["addnewProduct"]["new-item-price"].value;
+  alert(name);
+  $.post('/restaurant/addProduct', { name:name, desc:desc, price:price}, function(res){
+    
+  })
+  return false;
+};
+
 $(document).ready(function() {
   $('body').on('click', '.restaurant-card', function() {
     window.location.href = "/restaurant_profile";
@@ -155,8 +164,8 @@ $(document).ready(function() {
     });
 
     
-$('body').on('click', '.r-landing-card', function() {
-  let id = $(this).attr('data');
-  window.location.href = "/restaurant/" + id;
-  });
+  $('body').on('click', '.r-landing-card', function() {
+    let id = $(this).attr('data');
+    window.location.href = "/restaurant/" + id;
+    });
 });   

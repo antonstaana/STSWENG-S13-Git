@@ -47,12 +47,19 @@ restaurantModel.create = function(obj, next) {
     });
 };
 
-restaurantModel.getOne = function(query, callback){
+restaurantModel.get_One = function(query, callback){
     restaurantModel.findOne(query, function(err, restaurant) {
         if(err) throw err;
         callback(restaurant.toObject());
     });
 };
+
+restaurantModel.getOne = function(query, next){
+    restaurantModel.findOne(query, function(err, restaurant) {
+        next(err, restaurant);
+    });
+};
+
 
 restaurantModel.get_all = function(query, callback){
     restaurantModel.find(query, function(err, restaurants) {

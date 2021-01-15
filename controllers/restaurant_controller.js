@@ -3,7 +3,6 @@ const restaurant_model = require('../models/restaurants');
 
 exports.get_userResto = function(req,res){
     if(req.session.user){
-        console.log(req.session);
         res.render('restaurant_profile',{
             restaurant_name: req.session.model.displayname,
             restaurant_category: req.session.model.category,
@@ -24,8 +23,7 @@ exports.get_restaurant_profile = function(req,res){
     if(req.session.usertype == 'customer'){
         loggedin = true
     }
-
-    restaurant_model.getOne({_id:id}, function (restaurant) {
+    restaurant_model.get_One({_id:id}, function (restaurant) {
         res.render('restaurant_profile', {
             title: 'LocalEats - Restaurant',
             usertype: req.session.usertype,
@@ -35,10 +33,21 @@ exports.get_restaurant_profile = function(req,res){
     });
 }
 
-/*exports.addProduct = function(req, res){
-    var product = {
+exports.get_edit_menu = function(req,res){
+    res.render('/restaurant/edit_menu', {
+        usertype: req.session.usertype,
+        
+    })
+}
+
+exports.addProduct = function(req, res){
+    const product = {
         name: req.body.name,
         desc: req.body.desc,
         price: req.body.price
-    }
-}*/
+    };
+    console.log("Product");
+    console.log(product);
+
+    res.send({status: 200});
+}

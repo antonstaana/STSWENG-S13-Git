@@ -71,40 +71,7 @@
   </div>
   <div class="tab-pane" id="menu" role="tabpanel" aria-labelledby="menu-tab">
     <div class="menu-container">
-      {{#if (isRestaurant usertype)}}
-          <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" data-target="#addItem" style="background:#38B6FF; border-color:#38B6FF; font-weight:bolder; color:#FFDE59">Add new item</button>
-          <div class="collapse" id="addItem" style="margin-top: 20px;">
-              <div class="addTaskContainer">
-                  <form method="post">
-                    <div class="border border-secondary rounded">
-                        <div class="row" style="padding: 10px;">
-                          <div class="col-sm-6">
-                            <input type="text" id="new-item-name"  placeholder="Item Name" class="form-control">
-                          </div>
-                        </div>
-                        <div class="row" style="padding: 10px;">
-                            <div class="col">
-                                <textarea class="form-control" rows="3" maxlength="500" id="taskDesc" placeholder="Description" stye="resize:none; width:80%; margin: 5 auto;"></textarea>
-                            </div>
-                        </div>
-                        <div class="row" style="padding: 10px;">
-                            <div class="col-sm-7">
-                                <input type="number" id="new-item-price"  placeholder="Price" class="form-control" maxlength="4">
-                            </div> <br><br>
-                        </div>
-                        <div class="row" style="padding: 10px;">
-                            <div class="col-sm-12" align="right">
-                                <div>
-                                    <button type="button" id="publishItemBTN" class="btn btn-info add-new"><i class="fa fa-plus"></i> Publish</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                  </form>
-              </div>
-            </div>
-          <hr>           
-      {{/if}}
+
       <div class="menu-list ">
         {{>menu_item}}
         {{>menu_item}}
@@ -121,7 +88,10 @@
       </div>
     </div>
   </div>
-  <div class="tab-pane" id="order" role="tabpanel" aria-labelledby="order-tab">Order</div>
+  <div class="tab-pane" id="order" role="tabpanel" aria-labelledby="order-tab">Order
+    
+
+  </div>
 </div>
 
 </div>
