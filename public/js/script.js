@@ -151,11 +151,33 @@ function newProduct() {
   var desc = document.forms["addnewProduct"]["new-item-desc"].value;
   var price = document.forms["addnewProduct"]["new-item-price"].value;
   var category = document.forms["addnewProduct"]["new-item-category"].value;
-  alert(name + " " + desc + " " + price + " " + category);
+  name.trim();
+  desc.trim();
+  category.trim()
+  if (name == "" || desc == "" || price == "" || category == ""  ) {
+       console.log("Error:Missing Creds");
+    $('p#newItemError').text('Please enter missing credentials'); 
+    return false;
+  }
+ /* var check = function() {
+
+    var lastNameValidation = /^[a-zA-Z0-9àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]+$/i
+    
+    var custname = document.querySelector("#name").value;
+  
+    var customerFullName = custname;
+  
+    if (!(customerFullName.match(lastNameValidation))) {
+      alert('Invalid characters in first or last name. Only alphabetic letters, apostrophe, accents and hypen characters allowed<br/>');
+    } else {
+      alert("perfect")
+    }
+   }*/
+
   $.post('/restaurant/addProduct', { name:name, category:category, desc:desc, price:price}, function(res){
     switch(res.status){
       case 200: {
-        alert(name + " added. Please remmeber to save your changes before leaving this page.")
+        alert(name + " added. Please remember to save your changes before leaving this page.")
         window.location.href = "/restaurant/editMenu";
       }
     }
@@ -164,6 +186,9 @@ function newProduct() {
 };
 
 $(document).ready(function() {
+
+  $('[data-toggle="tooltip"]').tooltip(); //Bootstrap Tool tips
+
   $('body').on('click', '.restaurant-card', function() {
     window.location.href = "/restaurant_profile";
 
@@ -176,7 +201,6 @@ $(document).ready(function() {
     });
 
   $('body').on('click', '.save-menu', function() {
-    alert("CLICKED");
     $.post('/restaurant/save', {bod:"hi"}, function(res) {
       switch(res.status){
         case 200:{
@@ -184,7 +208,10 @@ $(document).ready(function() {
           window.location.href = "/restaurant/profile";
         }
       }
-      return false;
     })
   });
+
+  $('body').on('click', '.go-menu-edit', function() {
+    window.location.href = "/restaurant/editMenu";
+  })
 });   

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const restaurant_model = require('../models/restaurants');
 const product_model = require('../models/products');
+const e = require('express');
 
 exports.get_userResto = function(req,res){
     if(req.session.user){
@@ -49,6 +50,7 @@ exports.get_edit_menu = function(req,res){
         req.session.changesArr = [];
         
     }
+    console.log("Resto Controller editMenu: ");
     console.log(req.session.changes);
     req.session.changesStatus = false;
 
@@ -79,13 +81,16 @@ exports.addProduct = function(req, res){
 }
 
 exports.saveChanges = function(req,res){
-    var restaurant = req.session.changes;
-    var new_items = req.session.changesArr;
+    const restaurant = req.session.changes;
+    const new_items = req.session.changesArr;
     req.session.changes = null;
     req.session.changesArr = null;
-    restaurant_model.edit_menu(restaurant, new_items, function(resu) {
+     restaurant_model.edit_menu(restaurant, new_items, function(resu) {
+
         req.session.model = resu;
-        console.log(resu);
-        res.send({status:200});
+        console.log("Restaurant Controller resu:  "+resu);
+        //idk
+
+       return res.send({status:200});
     });
 }

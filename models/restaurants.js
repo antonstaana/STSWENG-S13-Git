@@ -89,21 +89,36 @@ restaurantModel.edit_restaurant = function(resto_data, callback) {
 
 restaurantModel.edit_menu = function(resto_data, new_items, callback){
     var restaurant = new restaurantModel(resto_data);
-    var new_items = new_items;
-    new_items.forEach(function(new_item) { 
+    var new_itemsdata = new_items;
+    var new_products = [];
+    //var sendResult = new restaurantModel();
+    new_itemsdata.forEach(function(new_item, index, array) { 
         products_model.create(new_item, function(err, item){
             if(err){
                 callback("Could not create product");
             }
             else{
-                restaurantModel.findByIdAndUpdate(restaurant.id, {$push:{'menu':item}},{new:true, useFindAndModify: false, overwrite:true}, function(err, result) {
-                    if(err) throw err;
-                    callback(result);
-                }); 
+                new_products.push(item);  
+                if (index === (array.length -1)) {
+                    // This is the last one.
+                    new_products.forEach(function(new_product, index, array) {
+                        restaurantModel.findByIdAndUpdate(restaurant.id, {$push:{'menu':new_product}},{new:true, useFindAndModify: false, overwrite:true}, function(err, result) {
+                            if(err) callback("ERR");
+                            else{
+                                if (index === (array.length -1)){
+                                    callback(result);
+                                }
+                            }
+                        }); 
+                    })
+                }
+          
             }
-
         })
     })
+
+
+    
 }
 
 module.exports = restaurantModel;
