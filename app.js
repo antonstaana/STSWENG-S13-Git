@@ -69,3 +69,4 @@ app.use('/customer', customer_route);
 
 //app.use('/customer', customer_route);
 
+mongoose.set('useFindAndModify', false);

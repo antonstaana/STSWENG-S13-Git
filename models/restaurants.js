@@ -1,4 +1,5 @@
 const mongoose = require('./connection');
+mongoose.set('useFindAndModify', false);
 const products_model = require('./products');
 const orders = require('./orders');
 const ratings = require('./ratings');
@@ -74,6 +75,35 @@ restaurantModel.get_all = function(query, callback){
     });
 }
 
-//restaurantModel.addProduct = function
+restaurantModel.edit_restaurant = function(resto_data, callback) {
+    var restaurant = new restaurantModel(resto_data);
+    restaurantModel.findByIdAndUpdate(restaurant.id, {$set:{username:'Chad'}},{new:true, useFindAndModify: false, overwrite:true}, function(err, result) {
+        if(err) throw err;
+        callback(result);
+    }); 
+    /*restaurantModel.findOne({_id:restaurant.id}, function(err, restaurant) {
+        if(err) throw err;
+        callback(restaurant.toObject());
+    });*/
+}
+
+restaurantModel.edit_menu = function(resto_data, new_items, callback){
+    var restaurant = new restaurantModel(resto_data);
+    var new_items = new_items;
+    new_items.forEach(function(new_item) { 
+        products_model.create(new_item, function(err, item){
+            if(err){
+                callback("Could not create product");
+            }
+            else{
+                restaurantModel.findByIdAndUpdate(restaurant.id, {$push:{'menu':item}},{new:true, useFindAndModify: false, overwrite:true}, function(err, result) {
+                    if(err) throw err;
+                    callback(result);
+                }); 
+            }
+
+        })
+    })
+}
 
 module.exports = restaurantModel;

@@ -63,7 +63,7 @@
         </p>
         {{#if (isRestaurant usertype)}}
           <div class="my-lg-0 inverted-color-button">
-            <button class="btn btn-outline" type="button">Edit</button>
+            <button class="btn btn-outline" type="button">Edit Profile</button>
           </div> 
         {{/if}}
       </div>
@@ -73,11 +73,9 @@
     <div class="menu-container">
 
       <div class="menu-list ">
-        {{>menu_item}}
-        {{>menu_item}}
-        {{>menu_item}}
-        {{>menu_item}}
-        {{>menu_item}}
+        {{#each menu}}
+          {{>menu_item product = this}}
+        {{/each}}
       </div>
     </div>
   </div>

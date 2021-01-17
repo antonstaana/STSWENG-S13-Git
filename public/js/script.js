@@ -150,9 +150,15 @@ function newProduct() {
   var name = document.forms["addnewProduct"]["new-item-name"].value;
   var desc = document.forms["addnewProduct"]["new-item-desc"].value;
   var price = document.forms["addnewProduct"]["new-item-price"].value;
-  alert(name);
-  $.post('/restaurant/addProduct', { name:name, desc:desc, price:price}, function(res){
-    
+  var category = document.forms["addnewProduct"]["new-item-category"].value;
+  alert(name + " " + desc + " " + price + " " + category);
+  $.post('/restaurant/addProduct', { name:name, category:category, desc:desc, price:price}, function(res){
+    switch(res.status){
+      case 200: {
+        alert(name + " added. Please remmeber to save your changes before leaving this page.")
+        window.location.href = "/restaurant/editMenu";
+      }
+    }
   })
   return false;
 };
@@ -168,4 +174,17 @@ $(document).ready(function() {
     let id = $(this).attr('data');
     window.location.href = "/restaurant/" + id;
     });
+
+  $('body').on('click', '.save-menu', function() {
+    alert("CLICKED");
+    $.post('/restaurant/save', {bod:"hi"}, function(res) {
+      switch(res.status){
+        case 200:{
+          alert("Menu changed successfully");
+          window.location.href = "/restaurant/profile";
+        }
+      }
+      return false;
+    })
+  });
 });   

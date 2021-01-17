@@ -354,10 +354,9 @@ font-family: 'Spartan' , sans-serif;
 
 .menu-card{
     padding: 20px;
-    position: relative;
     background: #fff;
     border: 1px solid #38B6FF;
-    justify-content: space-between;
+
     margin: 10px;
     min-width: 48%;
     max-width: 48%;
@@ -365,8 +364,17 @@ font-family: 'Spartan' , sans-serif;
 }
 
 .item-info .item-name{
+    font-size: large;
     font-weight:700;
 }
+
+.item-info .item-description{
+    white-space:wrap;
+    max-height: 3rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+} 
 
 @media(max-width: 1324px) {.menu-card{
     max-width: 100%;

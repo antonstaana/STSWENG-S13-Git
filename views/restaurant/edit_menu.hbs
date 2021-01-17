@@ -1,0 +1,75 @@
+<div class="inner-wrapper">
+  <h1>{{name}}Edit Menu</h1>
+  <div class="padded-container">
+    <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#addItemModal" style="background:#38B6FF; border-color:#38B6FF; font-weight:bolder; color:#FFDE59">Add new item</button>
+        <div class="col-sm-12" align="right">
+            <div>
+                <button class="btn btn-info add-new save-menu" type="submit"><i class="fa fa-plus"></i> Publish</button>
+            </div>
+        </div>
+              <!-- New Item Modal -->
+    <div class="modal fade" id="addItemModal"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="padding:10px">
+              <form method="POST" onsubmit="return newProduct()" name="addnewProduct">
+                <div class="form-group">
+                  <label for="new-item-name">Item Name</label>
+                  <input type="text" class="form-control" id="new-item-name" name="new-item-name" placeholder="Item Name" maxlength="30">
+                </div>
+                <div class="form-group">
+                    <label for="new-item-category">Category</label>
+                    <div class="input-group pb-modalreglog-input-group" style="width:200px">
+                        <!--<input type="text" class="form-control" id="category" name="category" placeholder="Category">-->
+                        <input class="form-control" list="categories" name="new-item-category" id="new-item-category" placeholder="Category" maxlength="255" >
+                          <datalist id="categories">
+                            <option value="Food">
+                            <option value="Drink">
+                          </datalist>
+                    </div>
+                </div>
+                <div class="form-group">
+                  <label for="new-item-desc">Description</label>
+                  <textarea id="new-item-desc" name="new-item-desc" maxlength="255" class="form-control" aria-label="With textarea" style="resize: none;"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="new-item-price">Price</label>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">₱</span>
+                      </div>
+                      <input type="number" class="form-control" id="new-item-price" name="new-item-price" placeholder="Price" max="5000">
+                    </div>
+                  <!-- <div class="input-group-prepend">
+                      <span class="input-group-text">$</span>
+                    </div>
+                  <input type="number" class="form-control" id="new-item-price" name="new-item-price" placeholder="Price" max="5000">
+                --></div>
+
+                <div class="row" style="padding: 10px;">
+                        <div class="col-sm-12" align="right">
+                            <div>
+                                <button class="btn btn-info add-new" type="submit"><i class="fa fa-plus"></i> Publish</button>
+                            </div>
+                        </div>
+                    </div>
+              </form>   
+            </div>
+        </div>
+    </div>
+    {{#if temp_items}}
+      <h2>New Items</h2>
+    {{/if}}
+    <div class="menu-list">
+        {{#if temp_items}}
+          {{#each temp_items}}
+            {{>menu_item product = this}}
+          {{/each}}
+          <hr>
+        {{/if}}
+        {{#each menu}}
+          {{>menu_item product = this}}
+        {{/each}}
+    </div>
+  </div>
+</div>  
+

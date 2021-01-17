@@ -1,3 +1,4 @@
+const { forEach } = require('async');
 const mongoose = require('./connection');
 
 const productSchema = new mongoose.Schema({
@@ -9,7 +10,7 @@ const productSchema = new mongoose.Schema({
         contentType: String
     },
     //stock: {type:Number, required: true},
-    //category: {type:String, required: true},
+    category: {type:String, required: true},
     //availability: {type:Boolean, required: true}
 },{
         toObject: {
@@ -22,11 +23,28 @@ const productSchema = new mongoose.Schema({
 
 const productModel = mongoose.model('products', productSchema);
 
-/*productSchema.create = function(obj, next) {
+productModel.create = function(obj, next) {
     const product = new productModel(obj);
 
-    product.save(function);
+    product.save(function(err, product){
+        next(err,product);
+    });
+};
+
+productModel.find_menu = function(item_id, callback){
+
+    var list = []
+    item_id.forEach(function(item) {
+        list.push(mongoose.Types.ObjectId(item));
+    })
+    productModel.find({_id: {$in: list}},null, {sort:{category:1, name:1}}, function(err,menu) {  //sort by Category then by ASCII value
+        var menu_objects = [];
+        menu.forEach(function(product) {
+            menu_objects.push(product.toObject());
+        });
+        callback(menu_objects);
+    });
 }
 
-module.exports = 
-*/
+module.exports = productModel
+
