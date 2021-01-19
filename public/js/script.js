@@ -185,21 +185,77 @@ function newProduct() {
   return false;
 };
 
+function updateRestoProfile(){
+  var name = document.forms["updateRProfile"]["resto-name"].value;
+  var desc = document.forms["updateRProfile"]["resto-desc"].value;
+  var street = document.forms["updateRProfile"]["resto-street"].value;
+  var city =document.forms["updateRProfile"]["resto-city"].value;
+  var openT =  document.forms["updateRProfile"]["resto-open-hour"].value;
+  var closeT = document.forms["updateRProfile"]["resto-close-hour"].value;
+  var category = document.forms["updateRProfile"]["resto-category"].value;
+  var contactno = document.forms["updateRProfile"]["resto-contact"].value;
+  var storehours = openT + " - " + closeT;
+  var location = street + ", " + city;
+
+  name.trim(); desc.trim(); street.trim(); city.trim();category.trim(); //Removes white spaces in the front and back of these fields
+  if(name =="" || desc =="" || street  =="" || city  =="" || openT =="" || closeT  =="" || category  =="" || contactno  =="" ){
+    alert("All fields must be filled to save")
+    return false
+  }
+
+      $.post('/restaurant/updateProfile', {name:name, desc:desc, location:location, 
+              storehours:storehours, category:category, contact:contactno}, function(res){
+        switch(res.status){
+          case 200: {
+          alert("Profile Successfully Updated");
+          window.location.href = "/restaurant/profile";
+          }
+        }        
+      })
+}
+
+function updateCustoProfile(){
+  var Fname = document.forms["updateCProfile"]["custo-Fname"].value;
+  var Lname = document.forms["updateCProfile"]["custo-Lname"].value;
+  var street = document.forms["updateCProfile"]["custo-street"].value;
+  var city =document.forms["updateCProfile"]["custo-city"].value;
+  var contactno = document.forms["updateCProfile"]["custo-contact"].value;
+  var location = street + ", " + city;
+  Fname.trim(); Lname.trim();  street.trim(); city.trim(); //Removes white spaces in the front and back of these fields
+  if(Fname =="" ||Lname ==""  || street  =="" || city  =="" ||  contactno  =="" ){
+    alert("All fields must be filled to save");
+    return false;
+  }
+  
+      $.post('/customer/updateProfile', {username:Fname, displayname: Lname, location:location,  contact:contactno}, function(res){
+        switch(res.status){
+          case 200: {
+          alert("Profile Successfully Updated");
+          window.location.href = "/customer/profile";
+          }
+        }      
+      })
+
+
+}
+
 $(document).ready(function() {
 
   $('[data-toggle="tooltip"]').tooltip(); //Bootstrap Tool tips
 
+  //[NOT IN USE] Restaurant Cards on search Page on click go to restaurant profile 
   $('body').on('click', '.restaurant-card', function() {
     window.location.href = "/restaurant_profile";
 
     });
 
-    
+    //Onclick Landing Restaurant Cards got to respective Restaurant Profile
   $('body').on('click', '.r-landing-card', function() {
     let id = $(this).attr('data');
     window.location.href = "/restaurant/" + id;
     });
 
+    //After Adding Items to restaurant menu Save
   $('body').on('click', '.save-menu', function() {
     $.post('/restaurant/save', {bod:"hi"}, function(res) {
       switch(res.status){
@@ -210,8 +266,27 @@ $(document).ready(function() {
       }
     })
   });
-
+  //Add new Item to temp arr of items, then reload the page
   $('body').on('click', '.go-menu-edit', function() {
     window.location.href = "/restaurant/editMenu";
   })
+
+  $('body').on('click', '.go-edit-RProfile', function() {
+    window.location.href = "/restaurant/editProfile";
+  })
+
+  $('body').on('click', '.cancel-Restaurant', function(){
+    alert("Cancelled changes");
+    window.location.href = "/restaurant/profile";
+  })
+
+  $('body').on('click', '.go-edit-CProfile', function() {
+    window.location.href = "/customer/editProfile";
+  })
+
+  $('body').on('click', '.cancel-Customer', function(){
+    alert("Cancelled changes");
+    window.location.href = "/customer/profile";
+  })
+
 });   

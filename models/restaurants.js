@@ -9,7 +9,7 @@ const restaurantSchema = new mongoose.Schema({
     uID : {type:String},
     email : {type:String, required: true}, //validation important
     password : {type:String, required: true}, //validation important
-    username :{type:String, required: true},
+    username :{type:String, required: true},  //REMOVE
     displayname :{type:String, required: true}, //Restaurant name
     bio :{type:String},
     category :{type:String},
@@ -75,23 +75,25 @@ restaurantModel.get_all = function(query, callback){
     });
 }
 
-restaurantModel.edit_restaurant = function(resto_data, callback) {
-    var restaurant = new restaurantModel(resto_data);
-    restaurantModel.findByIdAndUpdate(restaurant.id, {$set:{username:'Chad'}},{new:true, useFindAndModify: false, overwrite:true}, function(err, result) {
+restaurantModel.update_profile = function(resto_id, new_details, callback) {
+
+    restaurantModel.findByIdAndUpdate(resto_id, {$set:{displayname:new_details.name, bio:new_details.desc, category:new_details.category,
+                                                storehours:new_details.storehours, location:new_details.location, contactno:new_details.contact}},
+        {new:true, useFindAndModify: false, overwrite:true}, function(err, result) {
         if(err) throw err;
         callback(result);
     }); 
-    /*restaurantModel.findOne({_id:restaurant.id}, function(err, restaurant) {
-        if(err) throw err;
-        callback(restaurant.toObject());
-    });*/
 }
+/*
+Save Changes to menu
+resto_data - The restaurant obj to be changed
+new_items - Array of products to be added   
 
-restaurantModel.edit_menu = function(resto_data, new_items, callback){
+*/
+restaurantModel.edit_menu = function(resto_data, new_items, callback){ 
     var restaurant = new restaurantModel(resto_data);
     var new_itemsdata = new_items;
     var new_products = [];
-    //var sendResult = new restaurantModel();
     new_itemsdata.forEach(function(new_item, index, array) { 
         products_model.create(new_item, function(err, item){
             if(err){

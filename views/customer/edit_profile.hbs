@@ -1,0 +1,46 @@
+<div class="inner-wrapper">
+  <h1>Edit Profile</h1>
+  <div class="padded-container">
+    <div class="" id="">
+        
+           
+  <form method="POST" onsubmit="return updateCustoProfile()"  name="updateCProfile">
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label for="custo-name">First Name</label>
+      <input type="text" class="form-control" id="custo-Fname" name="custo-Fname" value="">
+    </div>
+    <div class="form-group col-md-3">
+      <label for="custo-name">Last Name</label>
+      <input type="text" class="form-control" id="custo-Lname" name="custo-Lname" value="">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="custo-street">Street Address</label>
+      <input type="text" class="form-control" id="custo-street" value="">
+    </div>
+    <div class="form-group col-md-2">
+      <label for="city">City</label>
+      <input type="text" class="form-control" id="custo-city" value="">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label for="custo-contact">Contact Number</label>
+      <input type="number" class="form-control" id="custo-contact" name="custo-contact" placeholder="Contact-Number" max="99999999999">
+    </div>
+  </div>
+
+        <button type="submit" class="btn btn-primary save-CProfile"  style="background:#38B6FF; border-color:#38B6FF; font-weight:bolder; color:#FFDE59">
+          Save Changes
+        </button>
+</form>   
+               <button  class="btn btn-primary cancel-Customer"  style="background:#969696;  font-weight:bolder; color:#fffdfd">
+           Cancel
+        </button>
+    
+    </div>
+  </div>
+</div>  
+

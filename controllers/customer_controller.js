@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const userModel = require('../models/users');
 const customerModel = require('../models/customers');
 const {validationResult} = require('express-validator');
+const { get_edit_profile } = require('./restaurant_controller');
 
 exports.get_customer_profile = (req, res, next) =>{
     if(req.session.usertype == 'customer'){
@@ -19,3 +20,20 @@ exports.get_customer_profile = (req, res, next) =>{
       res.redirect('/');
     }
   };
+/*
+Get Edit Profile Page
+*/
+exports.get_edit_profile = function(req,res){
+  res.render('customer/edit_profile', {
+    usertype:req.session.usertype,
+  })
+}
+/*
+Update Profile
+*/
+exports.update_profile = function(req, res){
+   customerModel.update_profile(req.session.model._id, req.body, function(result){
+       req.session.model=result;
+       return res.send({status:200});
+   });
+}

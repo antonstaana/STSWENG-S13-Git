@@ -6,8 +6,8 @@ const customerSchema = new mongoose.Schema({
     uID : {type:String},
     email : {type:String, required: true},
     password : {type:String, required: true},
-    username :{type:String},
-    displayname :{type:String},
+    username :{type:String}, //Fname
+    displayname :{type:String}, //:Lname
     bio :{type:String},
     location :{type:String},
     contactno :{type:Number},
@@ -43,6 +43,16 @@ customerModel.getOne = function(query, next) {
     next(err, customer);
   });
 };
+
+
+customerModel.update_profile = function(custo_id, new_details, callback) {
+
+  customerModel.findByIdAndUpdate(custo_id, {$set:{displayname:new_details.displayname, username:new_details.username, location:new_details.location, contactno:new_details.contact}},
+      {new:true, useFindAndModify: false, overwrite:true}, function(err, result) {
+      if(err) throw err;
+      callback(result);
+  }); 
+}
 
 
 module.exports = customerModel;

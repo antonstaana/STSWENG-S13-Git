@@ -2,16 +2,17 @@ const mongoose = require('mongoose');
 const restaurant_model = require('../models/restaurants');
 const product_model = require('../models/products');
 const e = require('express');
+const { timeout } = require('async');
 
+/*
+Get Restaurant Profile of restaurant user
+*/
 exports.get_userResto = function(req,res){
     if(req.session.user){
         product_model.find_menu(req.session.model.menu, function(menu) {
                 res.render('restaurant_profile',{
-                    restaurant_name: req.session.model.displayname,
-                    restaurant_category: req.session.model.category,
-                    restaurant_location: req.session.model.location,
-                    restaurant_contactno: req.session.model.contactno,
                     usertype: req.session.usertype,
+                    restaurant: req.session.model,
                     menu: menu,
                     logged_in:true,
                 });
@@ -42,7 +43,9 @@ exports.get_restaurant_profile = function(req,res){
 
     });
 }
-
+/*
+Get Edit Menu Page
+ */
 exports.get_edit_menu = function(req,res){
 
     if(!req.session.changesStatus){
@@ -64,6 +67,19 @@ exports.get_edit_menu = function(req,res){
 });
 
 }
+/*
+Get Edit Profile Change
+*/
+exports.get_edit_profile = function(req,res){
+
+
+    res.render('restaurant/edit_profile',{
+        usertype: req.session.usertype,
+        //name: req.session.model.displayname
+    })
+}
+
+
 
 
 exports.addProduct = function(req, res){
@@ -80,17 +96,23 @@ exports.addProduct = function(req, res){
     res.send({status: 200});
 }
 
+exports.update_profile = function(req, res){
+   // console.log("R Controllwer : update_profile")
+    //console.log(req.body);
+    restaurant_model.update_profile(req.session.model._id, req.body, function(result){
+        req.session.model=result;
+    return res.send({status:200});
+    });
+}
+
 exports.saveChanges = function(req,res){
     const restaurant = req.session.changes;
     const new_items = req.session.changesArr;
     req.session.changes = null;
     req.session.changesArr = null;
      restaurant_model.edit_menu(restaurant, new_items, function(resu) {
-
         req.session.model = resu;
-        console.log("Restaurant Controller resu:  "+resu);
-        //idk
-
+        //console.log("Restaurant Controller resu:  "+resu);
        return res.send({status:200});
     });
 }
