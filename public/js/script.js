@@ -202,6 +202,8 @@ function updateRestoProfile(){
     alert("All fields must be filled to save")
     return false
   }
+  
+  if(!confirm('Confirm changes?')) return false //confirmation
 
       $.post('/restaurant/updateProfile', {name:name, desc:desc, location:location, 
               storehours:storehours, category:category, contact:contactno}, function(res){
@@ -226,6 +228,8 @@ function updateCustoProfile(){
     alert("All fields must be filled to save");
     return false;
   }
+
+  if(!confirm('Confirm changes?')) return false //confirmation
   
       $.post('/customer/updateProfile', {username:Fname, displayname: Lname, location:location,  contact:contactno}, function(res){
         switch(res.status){
@@ -237,6 +241,47 @@ function updateCustoProfile(){
       })
 
 
+}
+
+function updatePassword(){
+  var password = document.forms["changePW"]["new-password"].value;
+  var confirmPassword = document.forms["changePW"]["c-new-password"].value;
+
+    if (password == "" || confirmPassword == "" ) {
+      $('p#changePW-error').text('Please enter missing credentials');
+      return false;
+      }
+      else if(password.includes(" ")){
+      $('p#changePW-error').text('Password contains invalid characters');
+      return false;
+      }
+      else if(password.length < 8){
+      console.log("Error: Pass too short");
+      $('p#changePW-error').text('Password must contain 8 characters');
+      return false;
+      }
+      else if(password != confirmPassword){
+      console.log("Error:Mismatched pass");
+      $('p#changePW-error').text('Please confirm your password');
+      return false;
+      }
+      else{
+        if(!confirm('Confirm changes?')) return false //confirmation
+      }    
+
+      $.post('/changePassword', {password:password}, function(res){
+        alert("Password Successfully Changed");
+        if(res.status == "customer") {
+          window.location.href = "/customer/profile";
+        }
+        else if(res.status == "restaurant"){
+          window.location.href = "/restaurant/profile"
+        }
+        else{
+          window.location.href ="/";
+        }
+      })
+return false;
 }
 
 $(document).ready(function() {

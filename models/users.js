@@ -54,5 +54,13 @@ userModel.getOne = function(query, next) {
   });
 };
 
+userModel.update_password = function(user_id, new_pass, callback){
+
+  userModel.findByIdAndUpdate(user_id, {$set:{password:new_pass}}, {new:true, useFindAndModify: false, overwrite:true}, function(err, result){
+    if(err) throw err;
+    callback(result);
+  })
+}
+
 
 module.exports = mongoose.model('users', userSchema);

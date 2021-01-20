@@ -8,6 +8,6 @@ router.post('/register_customer', registerCustomerValidation, user_controller.re
 router.post('/register_restaurant', registerRestaurantValidation, user_controller.register_restaurant);
 router.post('/login', loginValidation, user_controller.login);
 router.get('/logout', user_controller.logout);
-//router.get('/customer_profile', user_controller.get_customer_profile);
+router.post('/changePassword', user_controller.changePassword);
 
 module.exports = router;

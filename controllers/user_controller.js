@@ -298,3 +298,14 @@ exports.logout = (req, res) => {
     });
   }
 };
+
+exports.changePassword = function(req,res){
+  const userID = req.session.user;
+  const password = req.body.password;
+  const saltRounds = 10;
+  bcrypt.hash(password, saltRounds, function(err, hashed){
+    userModel.update_password(userID, hashed, function(result){
+        res.send({status: req.session.usertype});
+    })
+  })
+}

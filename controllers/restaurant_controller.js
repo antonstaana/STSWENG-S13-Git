@@ -8,6 +8,7 @@ const { timeout } = require('async');
 Get Restaurant Profile of restaurant user
 */
 exports.get_userResto = function(req,res){
+    console.log(req.session.user);
     if(req.session.user){
         product_model.find_menu(req.session.model.menu, function(menu) {
                 res.render('restaurant_profile',{

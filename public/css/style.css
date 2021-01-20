@@ -62,6 +62,19 @@ header{
     border-color: #38B6FF;
 }
 
+.btn-primary .color-button-g{
+    background:#969696;  
+    font-weight:bolder; 
+    color:#fffdfd
+}
+
+.btn-primary {
+    background:#38B6FF; 
+    border-color:#38B6FF; 
+    font-weight:bolder; 
+    color:#FFDE59
+}
+
 .error{
     color:rgb(242, 9, 9);
     text-decoration: underline;
