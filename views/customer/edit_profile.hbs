@@ -1,0 +1,86 @@
+<div class="inner-wrapper" id="customer-edit-profile">
+  <h1>Edit Profile</h1>
+  <div class="padded-container">
+    <div class="" id="">
+        
+           
+  <form method="POST" onsubmit="return updateCustoProfile()"  name="updateCProfile">
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label for="custo-name">First Name</label>
+      <input type="text" class="form-control" id="custo-Fname" name="custo-Fname" value="">
+    </div>
+    <div class="form-group col-md-3">
+      <label for="custo-name">Last Name</label>
+      <input type="text" class="form-control" id="custo-Lname" name="custo-Lname" value="">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="custo-street">Street Address</label>
+      <input type="text" class="form-control" id="custo-street" value="">
+    </div>
+    <div class="form-group col-md-2">
+      <label for="city">City</label>
+      <input type="text" class="form-control" id="custo-city" value="">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label for="custo-contact">Contact Number</label>
+      <input type="number" class="form-control" id="custo-contact" name="custo-contact" placeholder="Contact-Number" max="99999999999">
+    </div>
+  </div>
+
+        <button type="submit" class="btn btn-primary save-CProfile"  >
+          Save Changes
+        </button>
+</form>   
+
+        <button  class="btn btn-primary cancel-Customer"  style="background:#969696;  font-weight:bolder; color:#fffdfd; border-color:#969696;">
+           Cancel
+        </button>
+    
+    </div>
+  </div>
+
+  <h1>Security</h1>
+  <div class="padded-container">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changePW-modal" >
+          Change Password
+        </button>
+  </div>
+</div>  
+
+<div class="modal fade" id="changePW-modal"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="padding:10px">
+              <h5>Change Password</h5>
+              <form method="POST" onsubmit="return updatePassword()" name="changePW" style="margin-bottom: 0;">
+                <div class="form-group">
+                  <label for="new-item-name">New Password</label>
+                  <input type="password" class="form-control" id="new-password" name="new-password" placeholder="New Password" maxlength="60" >
+                </div>
+                <div class="form-group">
+                  <label for="c-new-password">Confirm Password</label>
+                  <input type="password" class="form-control" id="c-new-password" name="c-new-password" placeholder="Confirm Password" maxlength="60" >
+                </div>
+                <p id="changePW-error" class="error">  </p>
+                <div class="row" style="padding: 10px;">
+                        <div class="col-sm-6" align="left">
+                            <div>
+                                <button class="btn btn-primary"  type="submit">Save</button>
+                            </div>
+                        </div>
+                </form>
+
+
+                         <div class="col-sm-6" align="right">
+                            <div>
+                                <button class="btn btn-primary color-button-g" data-dismiss="modal" style="border-color:#969696; background:#969696;  font-weight:bolder; color:#fffdfd">Cancel</button>
+                            </div>
+                        </div>
+              </div>  
+            </div>
+        </div>
+    </div>

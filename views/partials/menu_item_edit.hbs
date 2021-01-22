@@ -1,4 +1,4 @@
-<div class="menu-card col-sm" id="menu-card" data="">
+<div class="menu-card col-sm" id="menu-card" data="{{product._id}}">
   <div >
         <div class="item-picture my-2" style="float:left; margin-right: 20px ; ">
           <div class="picture" style="background-image: url(https://image.shutterstock.com/image-photo/two-fresh-submarine-sandwiches-ham-600w-497930494.jpg);"></div>
@@ -18,4 +18,5 @@
           </div>
         </div>
   </div>
+          <button type="button" class="btn btn-primary btn-lg btn-block " id="remove-item" data="{{product._id}}"><i class="fas fa-trash"></i>&nbsp  Remove item</button>
 </div>

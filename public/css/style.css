@@ -1,10 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Spartan:wght@900&display=swap');
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
 
 html{
     position:relative;
     min-height: 100%;
 }
-body {   
+body {
  background-color: whitesmoke;
  color:#333333;
 }
@@ -42,7 +49,38 @@ header{
     text-align: center;
 }
 
+.inverted-color-button .btn-outline{
+    color: #38B6FF;
+    border-color: #38B6FF;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
 
+.inverted-color-button .btn-outline:hover{
+    background: #38B6FF;
+    color: #FFDE59;
+    border-color: #38B6FF;
+}
+
+.btn-primary .color-button-g{
+    background:#969696;  
+    font-weight:bolder; 
+    color:#fffdfd
+}
+
+.btn-primary {
+    background:#38B6FF; 
+    border-color:#38B6FF; 
+    font-weight:bolder; 
+    color:#FFDE59
+}
+
+
+
+.error{
+    color:rgb(242, 9, 9);
+    text-decoration: underline;
+}
 /*headers styles*/
 
 .about_header{
@@ -63,7 +101,6 @@ header{
 /*Start of Navbar styles*/
 .navbar {
     position: fixed;
-    height: 66px;
 }
 
 .navbar-custom{
@@ -71,11 +108,20 @@ header{
     vertical-align: middle;
 }
 
-.navbar-custom .navbar-brand, .navbar-custom .navbar-text { 
-    color: #FFDE59; 
+.navbar-custom .navbar-brand, .navbar-custom .navbar-text {
+    color: #FFDE59;
     font-family: 'Spartan' , sans-serif;
     padding: 0;
-} 
+}
+
+.navbaritems .nav-item .nav-link{
+    font-weight: 500;
+    color:#FFDE59;
+}
+
+.navbaritems .nav-item .nav-link:hover{
+    text-decoration: underline;
+}
 
 .btn-outline{
     color: #FFDE59;
@@ -88,7 +134,7 @@ header{
   background: #FFDE59;
   color: #38B6FF;
   border-color: #FFDE59;
-  
+
 }
 
 .navbar .customer-profile-dropdown .nav-item .nav-link i{
@@ -143,7 +189,7 @@ header{
 /*Landing Styles*/
 
 .landing-photo{
-    height:55vh;
+    height:40vh;
 }
 
 .itemsTitle /* page title */
@@ -162,31 +208,31 @@ header{
     margin-bottom: 150px;
     margin-left: auto;
     margin-right: auto;
-    display: grid;
-    grid-template-columns: 280px 280px 280px 280px;
-    row-gap: 50px;
-    max-width: 1020px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 70vw;
     transition: 2s;
-    overflow: hidden;
 }
 
-.product_img:hover 
+.r-landing-card .product_img:hover
 {
     transform: scale(1.07)
 }
 
-.product
+.r-landing-card
 {
-    margin-top: 20px;
+    margin: 20px 20px 20px 20px;
     min-width: 180px;
     min-height: 250px;
     max-width: 180px;
     max-height: 250px;
     text-align: center;
     position: relative;
+    cursor:pointer;
 }
 
-.product_img
+.r-landing-card .product_img
 {
     min-width: 180px;
     min-height: 180px;
@@ -194,9 +240,10 @@ header{
     max-height: 180px;
     object-fit: cover;
     transition: 0.7s;
+    border-radius: 20px;
 }
 
-.product_name
+.r-landing-card .product_name
 {
     text-transform: uppercase;
     font-weight: bold;
@@ -213,7 +260,7 @@ header{
     border-radius: 20px;
 }
 
-.modal-header{
+.modal-header .loginModal{
     background-color:#38B6FF;
     border-bottom:  0px;
 }
@@ -261,8 +308,9 @@ font-family: 'Spartan' , sans-serif;
   background: #38B6FF;
   color: #FFDE59;
   border-color: #38B6FF;
-  
 }
+
+
 
 /*Terms of Service*/
 
@@ -283,16 +331,16 @@ font-family: 'Spartan' , sans-serif;
 
 .customer-profile-header img.customer-image-lg, .restaurant-profile-header img.restaurant-image-lg{
     z-index: 0;
-    width: 100%;  
+    width: 100%;
     max-height: 250px;
     margin-bottom: 10px;
 }
 
 .customer-image-profile, .restaurant-image-profile
 {
-    margin: -100px 0px 0px 50px;
+    margin: -100px 50px 0px 50px;
     z-index: 9;
-    width: 175px; 
+    width: 175px;
     border-radius: 100%;
 }
 
@@ -302,11 +350,12 @@ font-family: 'Spartan' , sans-serif;
 
 
 
-.customer-details-container, .restaurant-profile-pane, .search-container, .restaurant-reg-container{
+.customer-details-container, .restaurant-profile-pane, .search-container, .restaurant-reg-container , .padded-container{  /*Containers with no photo*/
     background-color: white;
     padding: 30px;
     height: fit-content;
     border-radius: 20px;
+    margin-bottom: 20px;
 }
 
 /*Menu Syles*/
@@ -320,11 +369,9 @@ font-family: 'Spartan' , sans-serif;
 
 .menu-card{
     padding: 20px;
-    position: relative;
-    display: flex;
     background: #fff;
     border: 1px solid #38B6FF;
-    justify-content: space-between;
+
     margin: 10px;
     min-width: 48%;
     max-width: 48%;
@@ -332,8 +379,17 @@ font-family: 'Spartan' , sans-serif;
 }
 
 .item-info .item-name{
+    font-size: large;
     font-weight:700;
 }
+
+.item-info .item-description{
+    white-space:wrap;
+    max-height: 3rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+} 
 
 @media(max-width: 1324px) {.menu-card{
     max-width: 100%;
@@ -360,10 +416,16 @@ font-family: 'Spartan' , sans-serif;
     position: relative;
     display: flex;
     background: #fff;
-    border: 1px solid #38B6FF;
+    border: 1px solid rgb(229, 229, 229);
     justify-content: space-between;
     border-radius: 10px;
-    margin:10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+.customer-order-card:hover{
+    border: 1px solid #38B6FF;
 }
 
 .c-order-list{
@@ -379,13 +441,30 @@ font-family: 'Spartan' , sans-serif;
 /*Search Results*/
 
 .search-results{
-
-    display:flex; flex-wrap: wrap; box-sizing: border-box; justify-content:center;
-
-
+    display:flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    transition: 1.5s;
 }
 
 .search-results::after {
     content: "";
     flex:content;
+}
+
+.restaurant-card{
+    position:relative;
+    width:300px;
+    height:350px;
+    padding:0px;
+    margin:10px;
+    border-width:5px;
+}
+
+.break-long-words {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
+  word-break: break-word;
+  hyphens: auto;
 }

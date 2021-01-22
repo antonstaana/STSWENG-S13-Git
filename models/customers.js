@@ -1,19 +1,22 @@
 const mongoose = require('./connection');
+const orders = require('./orders');
+const ratings = require('./ratings');
 
 const customerSchema = new mongoose.Schema({
+    uID : {type:String},
     email : {type:String, required: true},
     password : {type:String, required: true},
-    username :{type:String, required: true},
-    displayname :{type:String, required: true},
-    bio :{type:String, required: true},
-    location :{type:String, required: true},
-    contactno :{type:Number, required: true},
+    username :{type:String}, //Fname
+    displayname :{type:String}, //:Lname
+    bio :{type:String},
+    location :{type:String},
+    contactno :{type:Number},
     img : {
         data: Buffer,
         contentType: String
     },
-    orders: [orderSchema],
-    ratings: [ratingSchema]
+    orders: [{type: mongoose.Schema.Types.ObjectId, ref: "orders"}],
+    ratings: [{type: mongoose.Schema.Types.ObjectId, ref: "ratings"}]
 },{
         toObject: {
             virtuals: true,
@@ -23,4 +26,33 @@ const customerSchema = new mongoose.Schema({
         }
 });
 
-module.exports = mongoose.model('customers', customerSchema);
+const customerModel = mongoose.model('customers', customerSchema);
+
+customerModel.create = function(obj, next) {
+  const customer = new customerModel(obj);
+  console.log("Customer Model");
+  console.log(customer);
+
+  customer.save(function(err, customer) {
+    next(err, customer);
+  });
+};
+
+customerModel.getOne = function(query, next) {
+  customerModel.findOne(query, function(err, customer) {
+    next(err, customer);
+  });
+};
+
+
+customerModel.update_profile = function(custo_id, new_details, callback) {
+
+  customerModel.findByIdAndUpdate(custo_id, {$set:{displayname:new_details.displayname, username:new_details.username, location:new_details.location, contactno:new_details.contact}},
+      {new:true, useFindAndModify: false, overwrite:true}, function(err, result) {
+      if(err) throw err;
+      callback(result);
+  }); 
+}
+
+
+module.exports = customerModel;

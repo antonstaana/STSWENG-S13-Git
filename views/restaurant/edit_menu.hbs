@@ -1,0 +1,116 @@
+<div class="inner-wrapper" id="restaurant-edit-menu">
+  <h1>{{name}} - Edit Menu</h1>
+  <div class="padded-container">
+    <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#addItemModal" style="background:#38B6FF; border-color:#38B6FF; font-weight:bolder; color:#FFDE59">Add new item</button>
+      {{#if temp_items}}
+        <div class="col-sm-12" align="center" style="margin:10px 0 10px 0;">
+            <div>
+                <button type="button" class="btn btn-primary save-menu" id="save-menu" style="background:#38B6FF; border-color:#38B6FF; font-weight:bolder; color:#FFDE59">
+                  <i class="fa fa-plus"></i> Save
+                </button>
+                <button  class="btn btn-primary cancel-Restaurant"  style="background:#969696;  font-weight:bolder; color:#fffdfd">
+                  Cancel
+                </button>
+            </div>
+        </div>
+        {{else}}
+          {{#if temp_del_items}}
+                  <div class="col-sm-12" align="center" style="margin:10px 0 10px 0;">
+                    <div>
+                        <button type="button" class="btn btn-primary save-menu" id="save-menu" style="background:#38B6FF; border-color:#38B6FF; font-weight:bolder; color:#FFDE59">
+                          <i class="fa fa-plus"></i> Save
+                        </button>
+                        <button  class="btn btn-primary cancel-Restaurant"  style="background:#969696;  font-weight:bolder; color:#fffdfd">
+                          Cancel
+                        </button>
+                    </div>
+                  </div>
+          {{/if}}
+      {{/if}}
+              <!-- New Item Modal -->
+    <div class="modal fade" id="addItemModal"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="padding:10px">
+              <div class="modal-header" style="background-color: none; padding:0;">
+                <h4 class="modal-title">Add item details</h4>
+              </div>
+              <form method="POST" onsubmit="return newProduct()" name="addnewProduct" style="padding-top: 10px;">
+                <div class="form-group">
+                  <label for="new-item-name">Item Name</label>
+                  <input type="text" class="form-control" id="new-item-name" name="new-item-name" placeholder="Item Name" 
+                      maxlength="60" data-toggle="tooltip" data-placement="right" title="Warning: Long Names may be cut">
+                </div>
+                <div class="form-group">
+                    <label for="new-item-category">Category</label>
+                    <div class="input-group pb-modalreglog-input-group" style="width:200px">
+                        <!--<input type="text" class="form-control" id="category" name="category" placeholder="Category">-->
+                        <input class="form-control" list="categories" name="new-item-category" id="new-item-category" placeholder="Category" maxlength="30" >
+                          <datalist id="categories">
+                            <option value="Food">
+                            <option value="Drink">
+                          </datalist>
+                          <small>You may type your own category</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                  <label for="new-item-desc">Description</label>
+                  <textarea id="new-item-desc" name="new-item-desc" maxlength="255" class="form-control" aria-label="With textarea" 
+                      style="resize: none;" data-toggle="tooltip" data-placement="right" title="Warning: Long descriptions may be cut"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="new-item-price">Price</label>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">₱</span>
+                      </div>
+                      <input type="number" class="form-control" id="new-item-price" name="new-item-price" placeholder="Price" max="10000">
+                    </div>
+                  <!-- <div class="input-group-prepend">
+                      <span class="input-group-text">$</span>
+                    </div>
+                  <input type="number" class="form-control" id="new-item-price" name="new-item-price" placeholder="Price" max="5000">
+                --></div>
+                <p id="newItemError" class="error">  </p>
+                <div class="row" style="padding: 10px;">
+                        <div class="col-sm-6" align="left">
+                            <div>
+                                <button class="btn btn-primary add-new" type="submit"><i class="fa fa-plus"></i> Add Item</button>
+                            </div>
+                        </div>
+              </form>   
+                  <div class="col-sm-6" align="right">
+                    <div>
+                        <button class="btn btn-primary color-button-g" data-dismiss="modal" style="border-color:#969696; background:#969696;  font-weight:bolder; color:#fffdfd">Cancel</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{#if temp_items}}
+      <h2>New Items</h2>
+      <hr>
+      <div class="menu-list">
+          {{#each temp_items}}
+            {{>menu_item product = this}}
+          {{/each}}
+      </div>
+    {{/if}}
+    {{#if temp_del_items}}
+      <h2 >To Be Deleted</h2>
+      <div class="menu-list">
+        {{#each temp_del_items}}
+          {{>menu_item product = this}}
+        {{/each}}
+      </div>
+    {{/if}}
+    <h2 style="margin-top: 10px;">Existing Menu</h2>
+    <hr>
+    <div class="menu-list">
+        {{#each menu}}
+          {{>menu_item_edit product = this}}
+        {{/each}}
+    </div>
+  </div>
+</div>  
+

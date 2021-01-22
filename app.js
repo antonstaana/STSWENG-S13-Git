@@ -6,8 +6,19 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
 
+const session = require('express-session');
+const flash = require('connect-flash');
+const MongoStore = require('connect-mongo')(session);
+
+const moment = require('moment');
+
+//Import helpers
+const helpers = require("./helpers")
 //routes
 const public_route = require('./routes/public_routes');
+const user_route = require('./routes/user_routes');
+const customer_route = require('./routes/customer_routes');
+const restaurant_route = require('./routes/restaurant_routes');
 
 const app = express();
 const port = 8000;
@@ -21,7 +32,7 @@ app.engine('hbs', hbs({
     defaultView:'main',
     layoutsDir: path.join(__dirname, '/views/layouts'),
     partialsDir: path.join(__dirname, '/views/partials'),
-
+    helpers
 }));
 
 app.set('view engine', 'hbs');
@@ -31,15 +42,31 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-
-/*
-app.get('/', (req,res) =>{
-    res.render('landing',{
-    });
-});*/
+app.use(session({
+    secret: 'kookie',
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    resave: false,
+    saveUninitialized: true,
+      //maxAge = ms - s - m - h - d
+    cookie: { secure: false, maxAge: 1000 * 60 * 60 * 1 * 1 }
+  }));
+  
+  app.use(flash());
+  
+  app.use((req, res, next) => {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    next();
+  });
 
 //set static files
 app.use(express.static('public'));
 
 app.use('/', public_route);
+app.use('/',user_route);
+app.use('/restaurant', restaurant_route);
+app.use('/customer', customer_route);
 
+//app.use('/customer', customer_route);
+
+mongoose.set('useFindAndModify', false);

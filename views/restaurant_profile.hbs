@@ -1,9 +1,11 @@
-<div class="inner-wrapper">
+<div class="inner-wrapper" id="restaurant-profile">
     <div class="restaurant-profile-header">
         <img align="left" class="restaurant-image-lg" src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>
         <img align="left" class="restaurant-image-profile thumbnail" src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" alt="Profile image example"/>
         <div class="restaurant-profile-text">
-            <h1>Restaurant Name</h1>
+            <h1>
+                  {{restaurant.displayname}}
+            </h1>
         </div>
     </div>
 
@@ -16,10 +18,10 @@
     <a class="nav-link" id="menu-tab" data-toggle="tab" href="#menu" role="tab" aria-controls="menu" aria-selected="false">Menu</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="review" aria-selected="false">Ratings and Reviews</a>
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Ratings and Reviews</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="order" aria-selected="false">Order</a>
+    <a class="nav-link" id="messages-tab" data-toggle="tab" href="#order" role="tab" aria-controls="order" aria-selected="false">Order</a>
   </li>
 </ul>
 
@@ -27,33 +29,55 @@
   <div class="tab-pane active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
     <div class="overview-container">
       <div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut quam id ligula hendrerit scelerisque at et arcu. Quisque in molestie ante. Nunc nec arcu.</p>
+        <p>
+          {{restaurant.bio}}
+        </p>
         <hr>
         <h4>Details</h4> 
         <h6 class="restaurant-category">Category/Cuisine</h6>
-        <p>Food Cuisine</p>
+             <p>{{restaurant.category}}</p>
         <h6>Operating Hours</h6>
-        <p style="color:#38B6FF">XX:XXxx - XX:XXxx</p>
+        <p style="color:#38B6FF">{{restaurant.storehours}}</p>
         <h6>Address</h6>
-        <p>XX BLDG, XX Street, XXXX City ZIP</p>
+        <p>
+              {{restaurant.location}}
+        </p>
         <h6>Contact</h6>
-        <p>XX XXXX XXXX</p>
+        <p>
+              {{restaurant.contactno}}
+        </p>
+        {{#if own}}
+          <div class="my-lg-0 inverted-color-button">
+            <button class="btn btn-outline go-edit-RProfile" type="button">Edit Profile</button>
+          </div> 
+        {{/if}}
       </div>
     </div>
   </div>
   <div class="tab-pane" id="menu" role="tabpanel" aria-labelledby="menu-tab">
     <div class="menu-container">
+      {{#if own}}
+        <button type="button" class="btn btn-primary btn-lg btn-block go-menu-edit" id="go-menu-edit"  style="background:#38B6FF; border-color:#38B6FF; font-weight:bolder; color:#FFDE59">Edit Menu</button>
+      {{/if}}
+      
       <div class="menu-list ">
-        {{>menu_item}}
-        {{>menu_item}}
-        {{>menu_item}}
-        {{>menu_item}}
-        {{>menu_item}}
+        {{#each menu}}
+          {{>menu_item product = this}}
+        {{/each}}
       </div>
     </div>
   </div>
-  <div class="tab-pane" id="review" role="tabpanel" aria-labelledby="review-tab">Ratings and Reviews</div>
-  <div class="tab-pane" id="order" role="tabpanel" aria-labelledby="order-tab">Order</div>
+  <div class="tab-pane" id="review" role="tabpanel" aria-labelledby="review-tab">
+    <div class="menu-container">
+      <div class="menu-list ">
+        <h1> Hello </h1>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane" id="order" role="tabpanel" aria-labelledby="order-tab">Order
+    
+
+  </div>
 </div>
 
 </div>
