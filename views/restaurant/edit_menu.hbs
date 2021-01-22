@@ -1,4 +1,4 @@
-<div class="inner-wrapper">
+<div class="inner-wrapper" id="restaurant-edit-menu">
   <h1>{{name}} - Edit Menu</h1>
   <div class="padded-container">
     <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#addItemModal" style="background:#38B6FF; border-color:#38B6FF; font-weight:bolder; color:#FFDE59">Add new item</button>
@@ -13,12 +13,28 @@
                 </button>
             </div>
         </div>
+        {{else}}
+          {{#if temp_del_items}}
+                  <div class="col-sm-12" align="center" style="margin:10px 0 10px 0;">
+                    <div>
+                        <button type="button" class="btn btn-primary save-menu" id="save-menu" style="background:#38B6FF; border-color:#38B6FF; font-weight:bolder; color:#FFDE59">
+                          <i class="fa fa-plus"></i> Save
+                        </button>
+                        <button  class="btn btn-primary cancel-Restaurant"  style="background:#969696;  font-weight:bolder; color:#fffdfd">
+                          Cancel
+                        </button>
+                    </div>
+                  </div>
+          {{/if}}
       {{/if}}
               <!-- New Item Modal -->
     <div class="modal fade" id="addItemModal"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" style="padding:10px">
-              <form method="POST" onsubmit="return newProduct()" name="addnewProduct">
+              <div class="modal-header" style="background-color: none; padding:0;">
+                <h4 class="modal-title">Add item details</h4>
+              </div>
+              <form method="POST" onsubmit="return newProduct()" name="addnewProduct" style="padding-top: 10px;">
                 <div class="form-group">
                   <label for="new-item-name">Item Name</label>
                   <input type="text" class="form-control" id="new-item-name" name="new-item-name" placeholder="Item Name" 
@@ -56,19 +72,18 @@
                 --></div>
                 <p id="newItemError" class="error">  </p>
                 <div class="row" style="padding: 10px;">
-                        <div class="col-sm-" align="left">
+                        <div class="col-sm-6" align="left">
                             <div>
-                                <button class="btn btn-info add-new" type="submit"><i class="fa fa-plus"></i> Publish</button>
+                                <button class="btn btn-primary add-new" type="submit"><i class="fa fa-plus"></i> Add Item</button>
                             </div>
                         </div>
-                        
-                    </div>
               </form>   
                   <div class="col-sm-6" align="right">
                     <div>
                         <button class="btn btn-primary color-button-g" data-dismiss="modal" style="border-color:#969696; background:#969696;  font-weight:bolder; color:#fffdfd">Cancel</button>
                     </div>
                   </div>
+                </div>
             </div>
         </div>
     </div>
@@ -81,11 +96,19 @@
           {{/each}}
       </div>
     {{/if}}
+    {{#if temp_del_items}}
+      <h2 >To Be Deleted</h2>
+      <div class="menu-list">
+        {{#each temp_del_items}}
+          {{>menu_item product = this}}
+        {{/each}}
+      </div>
+    {{/if}}
     <h2 style="margin-top: 10px;">Existing Menu</h2>
     <hr>
     <div class="menu-list">
         {{#each menu}}
-          {{>menu_item product = this}}
+          {{>menu_item_edit product = this}}
         {{/each}}
     </div>
   </div>

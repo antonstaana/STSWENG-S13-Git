@@ -1,4 +1,4 @@
-<div class="inner-wrapper">
+<div class="inner-wrapper" id="restaurant-profile">
     <div class="restaurant-profile-header">
         <img align="left" class="restaurant-image-lg" src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>
         <img align="left" class="restaurant-image-profile thumbnail" src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" alt="Profile image example"/>
@@ -46,7 +46,7 @@
         <p>
               {{restaurant.contactno}}
         </p>
-        {{#if (isRestaurant usertype)}}
+        {{#if own}}
           <div class="my-lg-0 inverted-color-button">
             <button class="btn btn-outline go-edit-RProfile" type="button">Edit Profile</button>
           </div> 
@@ -56,7 +56,7 @@
   </div>
   <div class="tab-pane" id="menu" role="tabpanel" aria-labelledby="menu-tab">
     <div class="menu-container">
-      {{#if (isRestaurant usertype)}}
+      {{#if own}}
         <button type="button" class="btn btn-primary btn-lg btn-block go-menu-edit" id="go-menu-edit"  style="background:#38B6FF; border-color:#38B6FF; font-weight:bolder; color:#FFDE59">Edit Menu</button>
       {{/if}}
       

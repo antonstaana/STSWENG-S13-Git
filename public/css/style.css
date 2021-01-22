@@ -75,6 +75,8 @@ header{
     color:#FFDE59
 }
 
+
+
 .error{
     color:rgb(242, 9, 9);
     text-decoration: underline;
@@ -258,7 +260,7 @@ header{
     border-radius: 20px;
 }
 
-.modal-header{
+.modal-header .loginModal{
     background-color:#38B6FF;
     border-bottom:  0px;
 }

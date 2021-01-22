@@ -31,7 +31,14 @@ productModel.create = function(obj, next) {
     });
 };
 
-productModel.find_menu = function(item_id, callback){
+productModel.get_One = function(query, callback){
+    productModel.findOne(query, function(err, item) {
+        if(err) throw err;
+        callback(item.toObject());
+    });
+};
+
+productModel.find_menu = function(item_id,  callback){
 
     var list = []
     item_id.forEach(function(item) {
@@ -45,6 +52,7 @@ productModel.find_menu = function(item_id, callback){
         callback(menu_objects);
     });
 }
+
 
 module.exports = productModel
 

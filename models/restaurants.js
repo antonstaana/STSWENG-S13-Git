@@ -90,37 +90,54 @@ resto_data - The restaurant obj to be changed
 new_items - Array of products to be added   
 
 */
-restaurantModel.edit_menu = function(resto_data, new_items, callback){ 
+restaurantModel.edit_menu = function(resto_data, new_items, del_items, callback){ 
     var restaurant = new restaurantModel(resto_data);
     var new_itemsdata = new_items;
     var new_products = [];
-    new_itemsdata.forEach(function(new_item, index, array) { 
-        products_model.create(new_item, function(err, item){
-            if(err){
-                callback("Could not create product");
-            }
-            else{
-                new_products.push(item);  
-                if (index === (array.length -1)) {
-                    // This is the last one.
-                    new_products.forEach(function(new_product, index, array) {
-                        restaurantModel.findByIdAndUpdate(restaurant.id, {$push:{'menu':new_product}},{new:true, useFindAndModify: false, overwrite:true}, function(err, result) {
-                            if(err) callback("ERR");
-                            else{
-                                if (index === (array.length -1)){
-                                    callback(result);
-                                }
-                            }
-                        }); 
-                    })
-                }
-          
-            }
-        })
+    var del_itemId = []
+    
+    del_items.forEach(function(item) {
+        del_itemId.push(item._id);
     })
 
-
+        restaurantModel.findByIdAndUpdate(restaurant.id, {$set:{menu:restaurant.menu}},{new:true, useFindAndModify: false, overwrite:true}, function(err, result) {
     
+             if(del_items.length > 0){
+              products_model.deleteMany({_id: {$in:del_itemId}}, function(err){});
+            }
+            if(new_itemsdata.length > 0){
+                new_itemsdata.forEach(function(new_item, index, array) { 
+                    products_model.create(new_item, function(err, item){
+                        if(err){
+                            callback("Could not create product");
+                        }
+                        else{
+                            new_products.push(item);  
+                            if (index === (array.length -1)) {
+                                // This is the last one.
+                                new_products.forEach(function(new_product, index, array) {
+                                    restaurantModel.findByIdAndUpdate(restaurant.id, {$push:{'menu':new_product}},{new:true, useFindAndModify: false, overwrite:true}, function(err, result) {
+                                        if(err) callback("ERR");
+                                        else{
+                                            if (index === (array.length -1)){
+                                                callback(result);      
+                                            }
+                                        }
+                                    }); 
+                                })
+                            }
+                    
+                        }
+                    })
+                })
+            }
+            else{
+                callback(result);
+            }
+        }); 
+
+
+
 }
 
 module.exports = restaurantModel;
