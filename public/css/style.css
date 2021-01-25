@@ -260,7 +260,7 @@ header{
     border-radius: 20px;
 }
 
-.modal-header .loginModal{
+ .modal-header {
     background-color:#38B6FF;
     border-bottom:  0px;
 }
