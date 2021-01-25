@@ -6,7 +6,7 @@
         <span class="navbar-toggler-icon" ><i class="fas fa-bars my-1"></i></span>
     </button>
     <div class="collapse navbar-collapse w-100" id="nav-menu" style="background-color: #38B6FF;">
-        <form action="/search" class="form-inline my-2 my-lg-0 mx-auto"  method="GET" style="width:500px; ">
+       <!-- <form action="/search" class="form-inline my-2 my-lg-0 mx-auto"  method="GET" style="width:500px; ">
             <div class="input-group " style="width:100%;">
                 <input id="nav-search" type="text" name="search" class="form-control" placeholder="Search" style="border-radius: 100px 0 0 100px; width:40%;">
                 <div class="input-group-prepend">
@@ -15,30 +15,30 @@
                     </button>
                 </div>
             </div>
-        </form>
-        <ul class="nav navbar-nav text-center navbaritems" >
+        </form> -->
+        <ul class="nav navbar-nav text-center navbaritems my-2 my-lg-0 ml-auto" >
             {{#if usertype}}
                 {{#if (isRestaurant usertype)}}
-                    <li class="nav-item" id="restaurant-navbar">
+                    <li class="nav-item my-0" id="restaurant-navbar">
                         <a class="nav-link" href="/restaurant/profile">Profile</a>
-                    </li>
+                    </li><!--
                     <li class="nav-item">
                         <a class="nav-link" href="">Reviews</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="">Orders</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-outline" role="button" href="/logout" >Logout</a>
+                    </li> -->
+                    <li class="nav-item my-1">
+                        <a class="btn btn-outline" role="button" href="/logout" ><i class="fas fa-sign-out-alt"></i></a>
                     </li>
                 {{/if}}
                 {{#if (isCustomer usertype)}}
                     <li class="nav-item" id="customer-navbar">
                         <a class="nav-link" href="/customer/profile" >Profile</a>
-                    </li>
+                    </li> <!--
                     <li class="nav-item">
                         <a class="nav-link" href="">Orders</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="btn btn-outline" role="button" href="/logout" >Logout</a>
                     </li>

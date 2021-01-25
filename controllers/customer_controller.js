@@ -14,6 +14,7 @@ exports.get_customer_profile = (req, res, next) =>{
             customer_email: req.session.model.email,
             usertype: req.session.usertype,
             logged_in:true,
+            title: req.session.model.username + " - Profile"  
         });
     }
     else{
@@ -26,6 +27,7 @@ Get Edit Profile Page
 exports.get_edit_profile = function(req,res){
   res.render('customer/edit_profile', {
     usertype:req.session.usertype,
+    title: req.session.model.username + " - Profile"  
   })
 }
 /*

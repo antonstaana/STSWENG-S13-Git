@@ -29,10 +29,12 @@ exports.get_about = function(req,res){
         res.render('static/about', {
             usertype: req.session.usertype,
             logged_in:true,
+            title:"About - LocalEats"
         });
     }
     else {
         res.render('static/about', {
+            title:"About - LocalEats"
         });
     }      
 }
@@ -42,10 +44,12 @@ exports.get_contacts = function(req,res){
         res.render('static/contacts', {
             usertype: req.session.usertype,
             logged_in:true,
+            title:"Contacts - LocalEats"
         });
     } 
     else {
         res.render('static/contacts', {
+            title:"Contacts - LocalEats"
         });
     }      
 }
@@ -55,10 +59,13 @@ exports.get_privacy = function(req,res){
         res.render('static/privacy', {
             usertype: req.session.usertype,
             logged_in:true,
+            title:"Privacy Policy - LocalEats"
         });
     }
     else {
         res.render('static/privacy', {
+            title:"Privacy Policy - LocalEats"
+
         });
     }      
 }
@@ -68,10 +75,14 @@ exports.get_terms = function(req,res){
         res.render('static/terms', {
             usertype: req.session.usertype,
             logged_in:true,
+            title:"Terms - LocalEats"
+
         });
     }
     else {
         res.render('static/terms', {
+            title:"Terms - LocalEats"
+
         });
     }      
 }
@@ -79,7 +90,7 @@ exports.get_terms = function(req,res){
 
 exports.get_restaurant_registration = function(req,res){
     res.render('restaurant_registration', {
-
+        title:"Restaurant Registration - LocalEats"
     });
 
 }
@@ -88,17 +99,21 @@ exports.get_restaurant_profile = function(req,res){
     if(req.session.usertype){
         if(req.session.usertype == 'restaurant'){
             res.render('restaurant_profile', {
+            title:"LocalEats"
+
             });
         }
         else{
             res.render('restaurant_profile', {
                 usertype: req.session.usertype,
                 logged_in:true,
+                title:"LocalEats"
             });
         }   
     } 
     else {
         res.render('restaurant_profile', {
+            title:"LocalEats"
         });
     }      
 }

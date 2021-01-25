@@ -16,6 +16,7 @@ exports.get_userResto = function(req,res){
                     own: true,
                     menu: menu,
                     logged_in:true,
+                    title:req.session.model.username + " - LocalEats"
                 });
         });
     }
@@ -34,7 +35,8 @@ exports.get_restaurant_profile = function(req,res){
                 usertype: req.session.usertype,
                 own: own ,
                 restaurant,
-                menu:menu
+                menu:menu,
+                title:req.session.model.username + " - LocalEats"
             })
 
      });
@@ -62,6 +64,8 @@ exports.get_edit_menu = function(req,res){
             temp_items:req.session.changesArr,
             temp_del_items:req.session.changesArrDels,
             menu: menu,
+            title: "Edit Menu - LocalEats"
+
         })
 });
 
@@ -74,7 +78,8 @@ exports.get_edit_profile = function(req,res){
 
     res.render('restaurant/edit_profile',{
         usertype: req.session.usertype,
-        name: req.session.model.displayname
+        name: req.session.model.displayname,
+        title: "Edit Profile - LocalEats"
     })
 }
 
