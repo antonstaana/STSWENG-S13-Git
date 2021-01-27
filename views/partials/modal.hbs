@@ -41,11 +41,14 @@
                     </div>
                     <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="profile-tab">
                         <div style="text-align: center;">
-                            <h9>
+                            <h4 style="color: #38B6FF">
+                                Customer Signup
+                            </h4>
+                            <small>
                                 <a href="/restaurant_registration">
                                     Click here to sign up as a Restaurant!
                                 </a>
-                            </h9>
+                            </small>
                         </div>
                         <form method='POST' onsubmit="return validateRegister()" name="register_customer">
                             <div class="form-group">
@@ -78,6 +81,12 @@
                                     <input type="password" class="form-control" id="password2" name="password2" placeholder="Password" maxlength="60">
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="contactno">Contact Number</label>
+                                <div class="input-group pb-modalreglog-input-group">
+                                    <input type="number" class="form-control" id="contactno" name="contactno" placeholder="Contact Number" maxlength="13">
+                                </div>
+                            </div>
                             <!-- Additional -->
                             <div class="form-group">
                                 <label for="street">Street Address <span style="font-weight: 500;line-height: 1.2;">(Optional)</span></label>
@@ -88,19 +97,7 @@
                             <div class="form-group">
                                 <label for="city_province">City / Province <span style="font-weight: 500;line-height: 1.2;">(Optional)</span></label>
                                 <div class="input-group pb-modalreglog-input-group">
-                                    <input type="text" class="form-control" id="city_province" name="city_province" placeholder="City / Province}" maxlength="255">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="contactno">Contact Number</label>
-                                <div class="input-group pb-modalreglog-input-group">
-                                    <input type="number" class="form-control" id="contactno" name="contactno" placeholder="Contact Number" maxlength="13">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="image">Profile Picture <span style="font-weight: 500;line-height: 1.2;">(Optional)</span></label>
-                                <div class="input-group pb-modalreglog-input-group">
-                                    <input type="file" class="form-control" id="image" name="image">
+                                    <input type="text" class="form-control" id="city_province" name="city_province" placeholder="City / Province" maxlength="255">
                                 </div>
                             </div>
                             <p id="registerError" class="error"></p>

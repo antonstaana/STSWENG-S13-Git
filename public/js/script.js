@@ -35,6 +35,7 @@ function validateLogin() {
 };
 
 function validateRegister() {
+  alert("Hello");
   var email = document.forms["register_customer"]["email"].value;
   var password = document.forms["register_customer"]["password"].value;
   var confirmPassword = document.forms["register_customer"]["password2"].value;
@@ -43,10 +44,9 @@ function validateRegister() {
   var street = document.forms["register_customer"]["street"].value;
   var city_province = document.forms["register_customer"]["city_province"].value;
   var contactno = document.forms["register_customer"]["contactno"].value;
-  var image = document.forms["register_customer"]["image"].value;
-
+  alert("hi");
   if (email == "" || password == "" || confirmPassword == "" || 
-      displayname == ""  ||
+      displayname == ""  || username =="" ||
       contactno =="" ) {
         console.log("Error:Missing Creds");
     $('p#registerError').text('Please enter missing credentials');
@@ -93,7 +93,7 @@ function validateRestoRegister() {
   var email = document.forms["register_restaurant"]["email"].value;
   var password = document.forms["register_restaurant"]["password"].value;
   var confirmPassword = document.forms["register_restaurant"]["password2"].value;
-  var username  = document.forms["register_restaurant"]["username"].value;
+  var username =  null;
   var displayname  = document.forms["register_restaurant"]["displayname"].value;
   var category  = document.forms["register_restaurant"]["category"].value;
   var street = document.forms["register_restaurant"]["street"].value;
@@ -257,7 +257,7 @@ function updatePassword(){
       }
       else if(password.length < 8){
       console.log("Error: Pass too short");
-      $('p#changePW-error').text('Password must contain 8 characters');
+      $('p#changePW-error').text('Password must contain at least 8 characters');
       return false;
       }
       else if(password != confirmPassword){

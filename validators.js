@@ -24,7 +24,7 @@ const registerCustomerValidation = [
 
 const registerRestaurantValidation = [
   body('email').not().isEmpty().withMessage("Email is required."),
-  body('username').not().isEmpty().withMessage("Username is required."),
+ // body('username').not().isEmpty().withMessage("Username is required."),
   body('displayname').not().isEmpty().withMessage("Display Name is required."),
   body('category').not().isEmpty().withMessage("Category is required."),
   body('street').not().isEmpty().withMessage("Street is required."),

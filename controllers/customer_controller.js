@@ -5,11 +5,15 @@ const {validationResult} = require('express-validator');
 const { get_edit_profile } = require('./restaurant_controller');
 
 exports.get_customer_profile = (req, res, next) =>{
+
+
     if(req.session.usertype == 'customer'){
       //console.log(req.session);
+      if(req.session.model ==',')
+        var location = null;
         res.render('customer/profile', {
             customer_name: req.session.model.username + " "+  req.session.model.displayname,
-            customer_address: req.session.model.location,
+            customer_address: location,
             customer_contact: req.session.model.contactno,
             customer_email: req.session.model.email,
             usertype: req.session.usertype,

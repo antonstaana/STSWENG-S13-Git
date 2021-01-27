@@ -327,6 +327,19 @@ font-family: 'Spartan' , sans-serif;
     width:80%;
 }
 
+.restaurant-registration-form .btn-outline{
+    color: #38B6FF;
+    border-color: #38B6FF;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+
+.restaurant-registration-form .btn-outline:hover {
+    background: #38B6FF;
+    color: #FFDE59;
+    border-color: #38B6FF;
+  }
+
 /*Profile Headers: Restaurant & Customer*/
 
 .customer-profile-header img.customer-image-lg, .restaurant-profile-header img.restaurant-image-lg{

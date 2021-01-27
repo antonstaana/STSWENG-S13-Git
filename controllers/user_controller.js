@@ -97,10 +97,10 @@ exports.register_customer = function(req,res){
 exports.register_restaurant = function(req,res){
 
   const errors = validationResult(req);
-  
+  console.log("Errors" + errors)
 
   if(errors.isEmpty()){
-    const {email, username, displayname, category, street, city_province, contactno, password, password2} = req.body;  //MISSING IMG
+    const {email,  displayname, category, street, city_province, contactno, password, password2} = req.body;  //MISSING IMG
     userModel.getOne({email : email}, function(err, result){
       if(result){
         console.log("Email already used");
@@ -113,7 +113,7 @@ exports.register_restaurant = function(req,res){
             usertype: "restaurant",
             email: email,
             password: hashed,
-            username: username,
+            username: null,
             displayname: displayname,
             bio: undefined,
             category: category,
@@ -140,7 +140,7 @@ exports.register_restaurant = function(req,res){
                 uID: user._id,
                 email: email,
                 password: hashed,
-                username: username,
+                username: null,
                 displayname: displayname,
                 bio: undefined,
                 category: category,

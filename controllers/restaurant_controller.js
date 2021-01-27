@@ -28,20 +28,27 @@ exports.get_userResto = function(req,res){
 exports.get_restaurant_profile = function(req,res){
     const id= req.params.restaurantId
     var own = false;
-    restaurant_model.get_One({_id:id}, function (restaurant) {
-        product_model.find_menu(restaurant.menu, function(menu) {
-            res.render('restaurant_profile', {
-                title: 'LocalEats - Restaurant',
-                usertype: req.session.usertype,
-                own: own ,
-                restaurant,
-                menu:menu,
-                title:req.session.model.username + " - LocalEats"
-            })
+    if(req.session.usertype = 'restaurant'){
+        res.render('static/about', {
+            usertype: req.session.usertype,
+            title:"LocalEats"
+        });
+    }
+    else{
+        restaurant_model.get_One({_id:id}, function (restaurant) {
+            product_model.find_menu(restaurant.menu, function(menu) {
+                res.render('restaurant_profile', {
+                    title: 'LocalEats - Restaurant',
+                    usertype: req.session.usertype,
+                    own: own ,
+                    restaurant,
+                    menu:menu,
+                    title:req.session.model.username + " - LocalEats"
+                })
 
-     });
-
-    });
+            });
+        });
+    }
 }
 /*
 Get Edit Menu Page
@@ -75,10 +82,11 @@ Get Edit Profile Change
 */
 exports.get_edit_profile = function(req,res){
 
-
+    console.log(req.session.model);
     res.render('restaurant/edit_profile',{
         usertype: req.session.usertype,
         name: req.session.model.displayname,
+        restaurant: req.session.model,
         title: "Edit Profile - LocalEats"
     })
 }

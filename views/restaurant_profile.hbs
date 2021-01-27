@@ -37,7 +37,12 @@
         <h6 class="restaurant-category">Category/Cuisine</h6>
              <p>{{restaurant.category}}</p>
         <h6>Operating Hours</h6>
-        <p style="color:#38B6FF">{{restaurant.storehours}}</p>
+
+        {{#if restaurant.storehours}}
+          <p style="color:#38B6FF">{{restaurant.storehours}}</p>
+          {{else}}
+            <p>N/A</p>
+        {{/if}}
         <h6>Address</h6>
         <p>
               {{restaurant.location}}

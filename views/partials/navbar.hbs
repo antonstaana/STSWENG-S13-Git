@@ -16,10 +16,10 @@
                 </div>
             </div>
         </form> -->
-        <ul class="nav navbar-nav text-center navbaritems my-2 my-lg-0 ml-auto" >
+        <ul class="nav navbar-nav text-center navbaritems my-2 my-lg-0 ml-auto" style="font-family: 'Spartan', sans-serif; letter-spacing: 0.05em;" >
             {{#if usertype}}
                 {{#if (isRestaurant usertype)}}
-                    <li class="nav-item my-0" id="restaurant-navbar">
+                    <li class="nav-item" id="restaurant-navbar">
                         <a class="nav-link" href="/restaurant/profile">Profile</a>
                     </li><!--
                     <li class="nav-item">
@@ -28,8 +28,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="">Orders</a>
                     </li> -->
-                    <li class="nav-item my-1">
-                        <a class="btn btn-outline" role="button" href="/logout" ><i class="fas fa-sign-out-alt"></i></a>
+                    <li class="nav-item" style="margin-left:10px">
+                        <a class="btn btn-outline" role="button" href="/logout" ><!--<i class="fas fa-sign-out-alt"></i> -->Logout</a>
                     </li>
                 {{/if}}
                 {{#if (isCustomer usertype)}}
@@ -39,12 +39,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="">Orders</a>
                     </li> -->
-                    <li class="nav-item">
+                    <li class="nav-item" style="margin-left:10px">
                         <a class="btn btn-outline" role="button" href="/logout" >Logout</a>
                     </li>
                 {{/if}}
             {{else}}
-            <li class="my-1"> 
+            <li class="my-1" style="margin-left:10px"> 
                     <button class="btn btn-outline"  data-toggle="modal" data-target="#loginModal">Login</button>
             </li>
            <!-- <li class="my-0">

@@ -8,14 +8,14 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="resto-name">Restaurant Name</label>
-      <input type="text" class="form-control" id="resto-name" name="restaurant-names" value="">
+      <input type="text" class="form-control" id="resto-name" name="restaurant-names" value="{{restaurant.displayname}}">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="resto-desc">Description</label>
       <textarea id="resto-desc" name="resto-desc" maxlength="255" class="form-control" aria-label="With textarea" 
-          style="resize: none;"  ></textarea>
+          style="resize: none;"  >{{restaurant.bio}}</textarea>
     </div> 
   </div>
   <div class="form-row">
@@ -42,7 +42,7 @@
   <div class="form-row">
     <div class="form-group col-md-4">
       <label for="resto-category">Category</label>
-      <input class="form-control" list="categories" name="resto-category" id="resto-category" maxlength="255" value="">
+      <input class="form-control" list="categories" name="resto-category" id="resto-category" maxlength="255" value="{{restaurant.category}}">
         <datalist id="categories">
           <option value="Fine Dining">
           <option value="Casual Dining">

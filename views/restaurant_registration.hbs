@@ -6,25 +6,20 @@
         <p class="text-center">
             <form method="POST" class="restaurant-registration-form" name="register_restaurant" onsubmit="return validateRestoRegister()">
                                 <div class="form-group">
-                                    <label for="email" >Email address</label>
+                                    <label for="email" >Email address <small>(Required)</small></label>
                                     <div class="input-group pb-modalreglog-input-group">
                                         <input type="email" class="form-control" id="email" name="email" placeholder="Email" maxlength="255">
                                     </div>
+                                   
                                 </div>
                                 <div class="form-group">
-                                    <label for="password">Username</label>
+                                    <label for="password">Restaurant Name <small>(Required)</small></label>
                                     <div class="input-group pb-modalreglog-input-group">
-                                        <input type="text" class="form-control" id="username" name="username" placeholder="Username" maxlength="255">
+                                        <input type="text" class="form-control" id="displayname" name="displayname" placeholder="Restaurant Name" maxlength="255">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="password">Restaurant Name</label>
-                                    <div class="input-group pb-modalreglog-input-group">
-                                        <input type="text" class="form-control" id="displayname" name="displayname" placeholder="Displayname" maxlength="255">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Category</label>
+                                    <label for="password">Category <small>(Required)</small></label>
                                     <div class="input-group pb-modalreglog-input-group">
                                         <!--<input type="text" class="form-control" id="category" name="category" placeholder="Category">-->
                                         <input class="form-control" list="categories" name="category" id="category" placeholder="Category" maxlength="255">
@@ -43,37 +38,37 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="street">Street Address</label>
+                                    <label for="street">Street Address <small>(Required)</small></label>
                                     <div class="input-group pb-modalreglog-input-group">
                                         <input type="text" class="form-control" id="street" name="street" placeholder="Street Address" maxlength="255">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="city_province">City / Province</label>
+                                    <label for="city_province">City / Province <small>(Required)</small></label>
                                     <div class="input-group pb-modalreglog-input-group">
                                         <input type="text" class="form-control" id="city_province" name="city_province" placeholder="City / Province" maxlength="255">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="password">Contact Number</label>
+                                    <label for="password">Contact Number <small>(Required)</small></label>
                                     <div class="input-group pb-modalreglog-input-group">
                                         <input type="number" class="form-control" id="contactno" name="contactno" placeholder="Contact-Number" maxlength="13">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="password">Password</label>
+                                    <label for="password">Password <small>(Required)</small></label>
                                     <div class="input-group pb-modalreglog-input-group">
                                         <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="password">Confirm Password</label>
+                                    <label for="password">Confirm Password <small>(Required)</small></label>
                                     <div class="input-group pb-modalreglog-input-group">
                                         <input type="password" class="form-control" id="password2" name="password2" placeholder="Password">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="image">Profile Image (Optional)</label>
+                                    <label for="image">Profile Image <small>(Optional)</small></label>
                                     <div class="input-group pb-modalreglog-input-group">
                                         <input type="file" class="form-control" id="image" name="image">
                                     </div>

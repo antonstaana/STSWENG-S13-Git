@@ -9,7 +9,7 @@ const restaurantSchema = new mongoose.Schema({
     uID : {type:String},
     email : {type:String, required: true}, //validation important
     password : {type:String, required: true}, //validation important
-    username :{type:String, required: true},  //REMOVE
+    username :{type:String},  //REMOVE
     displayname :{type:String, required: true}, //Restaurant name
     bio :{type:String},
     category :{type:String},
