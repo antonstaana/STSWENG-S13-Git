@@ -10,10 +10,16 @@ Get Restaurant Profile of restaurant user
 exports.get_userResto = function(req,res){
     if(req.session.user){
         product_model.find_menu(req.session.model.menu,  function(menu) {
-
+            var contact = req.session.model.contactno.toString();
+            if(contact.length < 11){
+                while(contact.length <11){
+                    contact = "0" + contact;
+                }
+            }
                 res.render('restaurant_profile',{
                     usertype: req.session.usertype,
                     restaurant: req.session.model,
+                    contactno: contact, 
                     own: true,
                     menu: menu,
                     logged_in:true,
@@ -29,26 +35,32 @@ exports.get_userResto = function(req,res){
 exports.get_restaurant_profile = function(req,res){
     const id= req.params.restaurantId
     var own = false;
-    if(req.session.usertype = 'restaurant'){
-        res.render('static/about', {
-            usertype: req.session.usertype,
-            title:"LocalEats"
-        });
+    if(req.session.usertype == 'restaurant' ){
+        res.redirect('/');
     }
-    else{
+    else if(req.session.usertype == 'customer'){
         restaurant_model.get_One({_id:id}, function (restaurant) {
             product_model.find_menu(restaurant.menu, function(menu) {
+                var contact = restaurant.contactno.toString();
+                if(contact.length < 11){
+                    while(contact.length <11){
+                        contact = "0" + contact;
+                    }
+                }
                 res.render('restaurant_profile', {
                     title: 'LocalEats - Restaurant',
                     usertype: req.session.usertype,
                     own: own ,
                     restaurant,
+                    contactno:contact,
                     menu:menu,
-                    title:req.session.model.username + " - LocalEats"
+                    title:restaurant.displayname+ " - LocalEats"
                 })
 
             });
         });
+    }else{
+        res.redirect('/');
     }
 }
 /*

@@ -7,7 +7,7 @@
   <form method="POST" onsubmit="return updateRestoProfile()"  name="updateRProfile">
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="resto-name">Restaurant Name</label>
+      <label for="resto-name">Restaurant Name <small>(Required)</small></label>
       <input type="text" class="form-control" id="resto-name" name="restaurant-names" value="{{restaurant.displayname}}">
     </div>
   </div>
@@ -15,33 +15,33 @@
     <div class="form-group col-md-6">
       <label for="resto-desc">Description</label>
       <textarea id="resto-desc" name="resto-desc" maxlength="255" class="form-control" aria-label="With textarea" 
-          style="resize: none;"  >{{restaurant.bio}}</textarea>
+          style="resize: none;"  placeholder="Description">{{restaurant.bio}}</textarea>
     </div> 
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="resto-street">Street Address</label>
-      <input type="text" class="form-control" id="resto-street" value="">
+      <label for="resto-street">Street Address <small>(Required)</small></label>
+      <input type="text" class="form-control" id="resto-street" placeholder="Street" value="{{getStreet restaurant.location}}">
     </div>
     <div class="form-group col-md-2">
-      <label for="city">City</label>
-      <input type="text" class="form-control" id="resto-city" value="">
+      <label for="city">City <small>(Required)</small></label>
+      <input type="text" class="form-control" id="resto-city" placeholder="City" value="{{getCity restaurant.location}}">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-2">
-        <label  for="resto-open-hour">Open Time</label>
-        <input type="time" class="form-control" id="resto-open-hour">
+        <label  for="resto-open-hour">Open Time <small>(Required)</small></label>
+        <input type="time" class="form-control" id="resto-open-hour" value="{{getOpen restaurant.storehours}}">
     </div>
      
     <div class="form-group col-md-2">
-        <label  for="resto-open-hour">Close Time</label>
-        <input type="time" class="form-control" id="resto-close-hour" value="">
+        <label  for="resto-open-hour">Close Time <small>(Required)</small></label>
+        <input type="time" class="form-control" id="resto-close-hour" value="{{getClose restaurant.storehours}}">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-4">
-      <label for="resto-category">Category</label>
+      <label for="resto-category">Category <small>(Required)</small></label>
       <input class="form-control" list="categories" name="resto-category" id="resto-category" maxlength="255" value="{{restaurant.category}}">
         <datalist id="categories">
           <option value="Fine Dining">
@@ -57,8 +57,8 @@
   </div>
   <div class="form-row">
     <div class="form-group col-md-3">
-      <label for="resto-contact">Contact Number</label>
-      <input type="number" class="form-control" id="resto-contact" name="resto-contact" placeholder="Contact-Number" max="99999999999">
+      <label for="resto-contact">Contact Number <small>(Required)</small></label>
+      <input type="number" class="form-control" id="resto-contact" name="resto-contact" placeholder="Contact-Number" max="99999999999" value="{{restaurant.contactno}}">
     </div>
   </div>
 
@@ -87,6 +87,10 @@
             <div class="modal-content" style="padding:10px">
               <h5>Change Password</h5>
               <form method="POST" onsubmit="return updatePassword()" name="changePW" style="margin-bottom: 0;">
+                 <div class="form-group">
+                  <label >Current Password</label>
+                  <input type="password" class="form-control" id="curr-password" name="curr-password" placeholder="Current Password" maxlength="60" >
+                </div> <p id="changePW-error1" class="error"></p>  
                 <div class="form-group">
                   <label for="new-item-name">New Password</label>
                   <input type="password" class="form-control" id="new-password" name="new-password" placeholder="New Password" maxlength="60" >

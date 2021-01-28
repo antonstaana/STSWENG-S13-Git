@@ -30,7 +30,15 @@
     <div class="overview-container">
       <div>
         <p>
-          {{restaurant.bio}}
+          {{#if own}}
+            {{#if restaurant.bio}}
+              {{restaurant.bio}}
+            {{else}}
+              <b>No restaurant description. Edit your profile to add one now! </b>
+            {{/if}}
+          {{else}}
+            {{restaurant.bio}}
+          {{/if}}
         </p>
         <hr>
         <h4>Details</h4> 
@@ -39,7 +47,7 @@
         <h6>Operating Hours</h6>
 
         {{#if restaurant.storehours}}
-          <p style="color:#38B6FF">{{restaurant.storehours}}</p>
+          <p style="color:#38B6FF">{{getTime restaurant.storehours}}</p>
           {{else}}
             <p>N/A</p>
         {{/if}}
@@ -49,7 +57,7 @@
         </p>
         <h6>Contact</h6>
         <p>
-              {{restaurant.contactno}}
+              {{contactno}}
         </p>
         {{#if own}}
           <div class="my-lg-0 inverted-color-button">

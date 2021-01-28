@@ -7,28 +7,28 @@
   <form method="POST" onsubmit="return updateCustoProfile()"  name="updateCProfile">
   <div class="form-row">
     <div class="form-group col-md-3">
-      <label for="custo-name">First Name</label>
-      <input type="text" class="form-control" id="custo-Fname" name="custo-Fname" value="">
+      <label for="custo-name">First Name <small>(Required)</small></label>
+      <input type="text" class="form-control" id="custo-Fname" name="custo-Fname" value="{{customer.username}}">
     </div>
     <div class="form-group col-md-3">
-      <label for="custo-name">Last Name</label>
-      <input type="text" class="form-control" id="custo-Lname" name="custo-Lname" value="">
+      <label for="custo-name">Last Name <small>(Required)</small></label>
+      <input type="text" class="form-control" id="custo-Lname" name="custo-Lname" value="{{customer.displayname}}">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="custo-street">Street Address</label>
-      <input type="text" class="form-control" id="custo-street" value="">
+      <label for="custo-street">Street Address <small>(Required)</small></label>
+      <input type="text" class="form-control" id="custo-street" placeholder="Street" value="{{getStreet customer.location}}">
     </div>
     <div class="form-group col-md-2">
       <label for="city">City</label>
-      <input type="text" class="form-control" id="custo-city" value="">
+      <input type="text" class="form-control" id="custo-city" placeholder="City" value="{{getCity customer.location}}">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-3">
-      <label for="custo-contact">Contact Number</label>
-      <input type="number" class="form-control" id="custo-contact" name="custo-contact" placeholder="Contact-Number" max="99999999999">
+      <label for="custo-contact">Contact Number <small>(Required)</small></label>
+      <input type="number" class="form-control" id="custo-contact" name="custo-contact" placeholder="Contact Number" value="{{contactLzero customer.contactno}}" max="99999999999" min="1000000000">
     </div>
   </div>
 
@@ -58,7 +58,11 @@
               <h5>Change Password</h5>
               <form method="POST" onsubmit="return updatePassword()" name="changePW" style="margin-bottom: 0;">
                 <div class="form-group">
-                  <label for="new-item-name">New Password</label>
+                  <label >Current Password</label>
+                  <input type="password" class="form-control" id="curr-password" name="curr-password" placeholder="Current Password" maxlength="60" >
+                </div> <p id="changePW-error1" class="error"></p> 
+                <div class="form-group">
+                  <label >New Password</label>
                   <input type="password" class="form-control" id="new-password" name="new-password" placeholder="New Password" maxlength="60" >
                 </div>
                 <div class="form-group">

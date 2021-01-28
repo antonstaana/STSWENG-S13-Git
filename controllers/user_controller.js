@@ -100,7 +100,7 @@ exports.register_restaurant = function(req,res){
   console.log("Errors" + errors)
 
   if(errors.isEmpty()){
-    const {email,  displayname, category, street, city_province, contactno, password, password2} = req.body;  //MISSING IMG
+    const {email,  displayname, category, street, city_province, contactno, password, password2 , time} = req.body;  //MISSING IMG
     userModel.getOne({email : email}, function(err, result){
       if(result){
         console.log("Email already used");
@@ -144,7 +144,7 @@ exports.register_restaurant = function(req,res){
                 displayname: displayname,
                 bio: undefined,
                 category: category,
-                storehours:undefined,
+                storehours:time,
                 location: street + ", " + city_province,
                 contactno: contactno,
                 img:undefined,
@@ -300,12 +300,42 @@ exports.logout = (req, res) => {
 };
 
 exports.changePassword = function(req,res){
+  console.log("Usercontroller");
   const userID = req.session.user;
   const password = req.body.password;
+  const curPass = req.body.cPass;
   const saltRounds = 10;
-  bcrypt.hash(password, saltRounds, function(err, hashed){
-    userModel.update_password(userID, hashed, function(result){
-        res.send({status: req.session.usertype});
-    })
-  })
-}
+  userModel.getOne({ email: req.session.model.email }, (err, user) => {
+    if (err) {
+    // Database error occurred...
+    console.log("Database Error!1");
+    req.flash('error_msg', 'Database Error!');
+    res.send({status: 500});
+    } else {
+    // Successful query
+    if (user) {
+        // Customer found!
+        // Check password with hashed value in the database
+    
+    bcrypt.compare(curPass, user.password, (err, result) => {
+
+        if (result) {
+          bcrypt.hash(password, saltRounds, function(err, hashed){
+            userModel.update_password(userID, hashed, function(result){
+                res.send({status: req.session.usertype});
+            })
+          })
+
+        } else {
+        // passwords don't match
+        res.send({status: 401});
+        }
+    });
+    } else {
+        res.send({status : 500});
+    }
+    }}
+    )
+
+
+};

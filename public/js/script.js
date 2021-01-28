@@ -93,6 +93,8 @@ function validateRestoRegister() {
   var password = document.forms["register_restaurant"]["password"].value;
   var confirmPassword = document.forms["register_restaurant"]["password2"].value;
   var username =  null;
+  var openT = document.forms["register_restaurant"]["open-hour"].value;
+  var closeT = document.forms["register_restaurant"]["close-hour"].value;
   var displayname  = document.forms["register_restaurant"]["displayname"].value;
   var category  = document.forms["register_restaurant"]["category"].value;
   var street = document.forms["register_restaurant"]["street"].value;
@@ -100,7 +102,7 @@ function validateRestoRegister() {
   var contactno = document.forms["register_restaurant"]["contactno"].value;
   var image = document.forms["register_restaurant"]["image"].value;
 
-  if (email == "" || password == "" || confirmPassword == "" || 
+  if (email == "" || password == "" || confirmPassword == "" || openT =="" || closeT  =="" ||
       displayname == ""  || contactno == "" || category == "" || street =="" || city_province == "") {
         console.log("Error:Missing Creds");
     $('p#registerError').text('Please enter missing credentials');
@@ -121,11 +123,11 @@ function validateRestoRegister() {
     return false;
   }
   else{
-    
+    var time = openT+" - " + closeT;
     $.post('/register_restaurant', {email:email, username:username, password:password, 
                                     password2:confirmPassword, displayname: displayname,
                                     street:street, city_province:city_province, contactno:contactno,
-                                    category:category}, function(res) {
+                                    category:category, time:time}, function(res) {
       switch(res.status){
         case 200: {
           window.location.href = "/restaurant/profile";
@@ -197,7 +199,7 @@ function updateRestoProfile(){
   var location = street + ", " + city;
 
   name.trim(); desc.trim(); street.trim(); city.trim();category.trim(); //Removes white spaces in the front and back of these fields
-  if(name =="" || desc =="" || street  =="" || city  =="" || openT =="" || closeT  =="" || category  =="" || contactno  =="" ){
+  if(name =="" ||  street  =="" || city  =="" || openT =="" || closeT  =="" || category  =="" || contactno  =="" ){
     alert("All fields must be filled to save")
     return false
   }
@@ -216,6 +218,7 @@ function updateRestoProfile(){
 }
 
 function updateCustoProfile(){
+
   var Fname = document.forms["updateCProfile"]["custo-Fname"].value;
   var Lname = document.forms["updateCProfile"]["custo-Lname"].value;
   var street = document.forms["updateCProfile"]["custo-street"].value;
@@ -223,9 +226,17 @@ function updateCustoProfile(){
   var contactno = document.forms["updateCProfile"]["custo-contact"].value;
   var location = street + ", " + city;
   Fname.trim(); Lname.trim();  street.trim(); city.trim(); //Removes white spaces in the front and back of these fields
-  if(Fname =="" ||Lname ==""  || street  =="" || city  =="" ||  contactno  =="" ){
-    alert("All fields must be filled to save");
+
+  if(Fname =="" ||Lname ==""  ||  contactno  =="" ){
+    alert("All required fields must be filled to save");
     return false;
+  }
+
+  if(city =="" && street.length > 0 ){
+    location = street;
+  }
+  if(street =="" && city.length > 0 ){
+    location = city;
   }
 
   if(!confirm('Confirm changes?')) return false //confirmation
@@ -241,12 +252,12 @@ function updateCustoProfile(){
 
 
 }
-
+/*Password update for both restaurant and customer */
 function updatePassword(){
   var password = document.forms["changePW"]["new-password"].value;
   var confirmPassword = document.forms["changePW"]["c-new-password"].value;
-
-    if (password == "" || confirmPassword == "" ) {
+  var curPassword = document.forms["changePW"]["curr-password"].value;
+    if (password == "" || confirmPassword == "" || curPassword =="") {
       $('p#changePW-error').text('Please enter missing credentials');
       return false;
       }
@@ -268,16 +279,24 @@ function updatePassword(){
         if(!confirm('Confirm changes?')) return false //confirmation
       }    
 
-      $.post('/changePassword', {password:password}, function(res){
-        alert("Password Successfully Changed");
+      $.post('/changePassword', {cPass: curPassword,password:password}, function(res){
+        
         if(res.status == "customer") {
+          alert("Password Successfully Changed");
           window.location.href = "/customer/profile";
         }
         else if(res.status == "restaurant"){
+          alert("Password Successfully Changed");
           window.location.href = "/restaurant/profile"
         }
+        else if(res.status == 401){
+          $('p#changePW-error1').text('Incorrect Password.');
+          $('p#changePW-error').text('');
+          return false;
+        }
         else{
-          window.location.href ="/";
+          alert("Error. Please try again");
+         return false;
         }
       })
 return false;
