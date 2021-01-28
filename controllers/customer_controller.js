@@ -9,8 +9,8 @@ exports.get_customer_profile = (req, res, next) =>{
 
     if(req.session.usertype == 'customer'){
       //console.log(req.session);
-      if(req.session.model ==',')
-        var location = null;
+      if(req.session.model.location ==', ')
+        var location = "N/A";
         res.render('customer/profile', {
             customer_name: req.session.model.username + " "+  req.session.model.displayname,
             customer_address: location,

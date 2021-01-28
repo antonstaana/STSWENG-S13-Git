@@ -16,9 +16,6 @@ body {
  color:#333333;
 }
 
-header{
-    padding: 160px 0px 100px;
-}
 
 .title {
     font-size: x-large;
@@ -43,6 +40,10 @@ header{
     background-color: whitesmoke;
     margin-top: 100px;
 
+}
+
+.static-header{
+    position: relative;
 }
 
 .text-center{
@@ -84,17 +85,27 @@ header{
 /*headers styles*/
 
 .about_header{
-   background-image: url("../assets/food-stock-photo.jpg");
-    background-attachment: fixed;
+    padding:0px;
+    /* https://www.freewpheaders.com/wp-content/gallery/food-gallery/burger-sandwich-header.jpg*/
+    background-image: url("../assets/food-stock-photo.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    color:#FFDE59;
+  
     font-family: 'Spartan', sans-serif;
+    height:300px;
+    width: 100%;
+    filter:blur(1px) brightness(70%);
 }
 
 .about_header_text {
+    color:#FFDE59;
     font-family: 'Spartan', sans-serif;
+    position:absolute;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 
@@ -267,7 +278,6 @@ header{
 
 .modal-header .modal-header-title{
     background-color:#38B6FF;
-    border-bottom:  0px;
 }
 
 .modal-body{

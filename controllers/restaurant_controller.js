@@ -10,13 +10,14 @@ Get Restaurant Profile of restaurant user
 exports.get_userResto = function(req,res){
     if(req.session.user){
         product_model.find_menu(req.session.model.menu,  function(menu) {
+
                 res.render('restaurant_profile',{
                     usertype: req.session.usertype,
                     restaurant: req.session.model,
                     own: true,
                     menu: menu,
                     logged_in:true,
-                    title:req.session.model.username + " - LocalEats"
+                    title:req.session.model.displayname + " - LocalEats"
                 });
         });
     }

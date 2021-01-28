@@ -35,7 +35,7 @@ function validateLogin() {
 };
 
 function validateRegister() {
-  alert("Hello");
+
   var email = document.forms["register_customer"]["email"].value;
   var password = document.forms["register_customer"]["password"].value;
   var confirmPassword = document.forms["register_customer"]["password2"].value;
@@ -44,7 +44,6 @@ function validateRegister() {
   var street = document.forms["register_customer"]["street"].value;
   var city_province = document.forms["register_customer"]["city_province"].value;
   var contactno = document.forms["register_customer"]["contactno"].value;
-  alert("hi");
   if (email == "" || password == "" || confirmPassword == "" || 
       displayname == ""  || username =="" ||
       contactno =="" ) {
@@ -58,7 +57,7 @@ function validateRegister() {
   }
   else if(password.length < 8){
     console.log("Error: Pass too short");
-    $('p#registerError').text('Password must contain 8 characters');
+    $('p#registerError').text('Password must contain at least 8 characters');
     return false;
   }
   else if(password != confirmPassword){
@@ -113,7 +112,7 @@ function validateRestoRegister() {
   }
   else if(password.length < 8){
     console.log("Error: Pass too short");
-    $('p#registerError').text('Password must contain 8 characters');
+    $('p#registerError').text('Password must contain at least 8 characters');
     return false;
   }
   else if(password != confirmPassword){
@@ -322,7 +321,7 @@ $(document).ready(function() {
   })
 
   $('body').on('click', '.cancel-Restaurant', function(){ //Cancel button for profile and menu edits
-    alert("Cancelled changes");
+    if(!confirm('Any changes will not be saved. Proceed??')) return false //confirmation
        window.location.href = "/restaurant/profile";
   })
 
@@ -331,7 +330,7 @@ $(document).ready(function() {
   })
 
   $('body').on('click', '.cancel-Customer', function(){ //Cancel button for profile 
-    alert("Cancelled changes");
+    if(!confirm('Any changes will not be saved. Proceed?')) return false //confirmation
     window.location.href = "/customer/profile";
   })
 
