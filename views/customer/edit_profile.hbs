@@ -1,4 +1,4 @@
-<div class="inner-wrapper" id="customer-edit-profile">
+<div class="inner-wrapper" id="customer-edit-profile" style="    min-height: 80vh;">
   <h1>Edit Profile</h1>
   <div class="padded-container">
     <div class="" id="">
@@ -7,27 +7,27 @@
   <form method="POST" onsubmit="return updateCustoProfile()"  name="updateCProfile">
   <div class="form-row">
     <div class="form-group col-md-3">
-      <label for="custo-name">First Name <small>(Required)</small></label>
-      <input type="text" class="form-control" id="custo-Fname" name="custo-Fname" value="{{customer.username}}">
+      <label for="custo-name">First Name </label>
+      <input type="text" class="form-control" id="custo-Fname" name="custo-Fname" value="{{customer.username}}" maxlength="255">
     </div>
     <div class="form-group col-md-3">
-      <label for="custo-name">Last Name <small>(Required)</small></label>
-      <input type="text" class="form-control" id="custo-Lname" name="custo-Lname" value="{{customer.displayname}}">
+      <label for="custo-name">Last Name </label>
+      <input type="text" class="form-control" id="custo-Lname" name="custo-Lname" value="{{customer.displayname}}" maxlength="255">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="custo-street">Street Address <small>(Required)</small></label>
-      <input type="text" class="form-control" id="custo-street" placeholder="Street" value="{{getStreet customer.location}}">
+      <label for="custo-street">Street Address <small>(Optional)</small></label>
+      <input type="text" class="form-control" id="custo-street" placeholder="Street" value="{{getStreet customer.location}}" maxlength="255">
     </div>
     <div class="form-group col-md-2">
-      <label for="city">City</label>
-      <input type="text" class="form-control" id="custo-city" placeholder="City" value="{{getCity customer.location}}">
+      <label for="city">City <small>(Optional)</small></label>
+      <input type="text" class="form-control" id="custo-city" placeholder="City" value="{{getCity customer.location}}" maxlength="255">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-3">
-      <label for="custo-contact">Contact Number <small>(Required)</small></label>
+      <label for="custo-contact">Contact Number </label>
       <input type="number" class="form-control" id="custo-contact" name="custo-contact" placeholder="Contact Number" value="{{contactLzero customer.contactno}}" max="99999999999" min="1000000000">
     </div>
   </div>

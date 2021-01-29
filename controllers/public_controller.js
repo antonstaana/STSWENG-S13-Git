@@ -3,11 +3,9 @@ const restaurant_model = require('../models/restaurants');
 
 exports.get_landing = function(req,res){
     if(req.session.usertype){
-        var page = "landing"
-        if(req.session.usertype == "customer")
-            page = "home";
+
         restaurant_model.get_all({}, function (restaurant_list){
-            res.render(page, {
+            res.render('landing', {
                 title: 'LocalEats',
                 usertype: req.session.usertype,
                 logged_in:true,
@@ -22,6 +20,26 @@ exports.get_landing = function(req,res){
                 restaurant_list
             });
         });
+    }       
+}
+
+
+exports.get_restaurantsPage = function(req,res){
+    if(req.session.usertype){
+        restaurant_model.get_all({}, function (restaurant_list){
+            res.render('home', {
+                title: 'LocalEats',
+                usertype: req.session.usertype,
+                logged_in:true,
+                restaurant_list
+            });
+        });
+    }
+    else {
+        res.render('landing', {
+            title: 'LocalEats',
+        });
+
     }       
 }
 

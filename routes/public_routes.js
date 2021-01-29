@@ -19,4 +19,6 @@ router.get('/restaurant_registration', public_controller.get_restaurant_registra
 
 router.get('/restaurant_profile', public_controller.get_restaurant_profile);
 
+router.get('/restaurants', public_controller.get_restaurantsPage);
+
 
