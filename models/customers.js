@@ -30,8 +30,8 @@ const customerModel = mongoose.model('customers', customerSchema);
 
 customerModel.create = function(obj, next) {
   const customer = new customerModel(obj);
-  console.log("Customer Model");
-  console.log(customer);
+ /* console.log("Customer Model");
+  console.log(customer);*/
 
   customer.save(function(err, customer) {
     next(err, customer);
@@ -46,10 +46,14 @@ customerModel.getOne = function(query, next) {
 
 
 customerModel.update_profile = function(custo_id, new_details, callback) {
-
   customerModel.findByIdAndUpdate(custo_id, {$set:{displayname:new_details.displayname, username:new_details.username, location:new_details.location, contactno:new_details.contact}},
       {new:true, useFindAndModify: false, overwrite:true}, function(err, result) {
-      if(err) throw err;
+      if(err)
+      { 
+        console.log("here") ;
+        console.log(err);
+        console.log("end");
+      };
       callback(result);
   }); 
 }

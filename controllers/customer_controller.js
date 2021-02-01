@@ -8,7 +8,6 @@ exports.get_customer_profile = (req, res, next) =>{
 
 
     if(req.session.usertype == 'customer'){
-      //console.log(req.session);
       if(req.session.model.location ==', '){
         var location = "N/A";
       }

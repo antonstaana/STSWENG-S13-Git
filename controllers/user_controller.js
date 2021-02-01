@@ -48,6 +48,7 @@ exports.register_customer = function(req,res){
             } else {
               //CREATE NEW CUSTOMER
               const newCustomer = {
+                _id: user._id,
                 uID : user._id,
                 email : email,
                 password:hashed,
@@ -73,8 +74,8 @@ exports.register_customer = function(req,res){
                   req.session.name = user.email;
                   req.session.model = newCustomer;
                   req.session.usertype = newUser.usertype;   
-                  console.log("The Session");
-                  console.log(req.session);
+                  /*console.log("Model");
+                  console.log(req.session.model._id);*/
                   console.log("You are now registered as a customer!")
                   req.flash("success_msg", 'You are now registered!');
                   res.send({status: 200});
@@ -137,6 +138,7 @@ exports.register_restaurant = function(req,res){
             } else {
             //CREATE NEW RESTAURANT
               const newRestaurant = {
+                _id: user._id,
                 uID: user._id,
                 email: email,
                 password: hashed,
@@ -166,8 +168,8 @@ exports.register_restaurant = function(req,res){
                         req.session.name = user.email;
                         req.session.model = newRestaurant;
                         req.session.usertype = newUser.usertype;   
-                        console.log("The Session");
-                        console.log(req.session);
+                        /*console.log("The Session");
+                        console.log(req.session);*/
                         console.log("You are now registered as a restaurant!")
                         req.flash("success_msg", 'You are now registered!');
                         res.send({status: 200});
