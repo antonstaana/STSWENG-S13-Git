@@ -4,7 +4,7 @@ const PASSWORD_MIN = 8;
 const PASSWORD_MAX = 255;
 
 const registerCustomerValidation = [
-  body('email').not().isEmpty().withMessage("Email is required.").isEmail().withMessage("Input must be an email."),
+  body('email').not().isEmpty().withMessage("Email is required."),
   body('username').not().isEmpty().withMessage("Username is required."),
   body('password').isLength({ min: PASSWORD_MIN }).withMessage("Password must be at least " + PASSWORD_MIN + " characters long.")
     .isLength({ max: PASSWORD_MAX }).withMessage("Password must be less than " + PASSWORD_MAX + " characters long."),
@@ -24,7 +24,7 @@ const registerCustomerValidation = [
 
 const registerRestaurantValidation = [
   body('email').not().isEmpty().withMessage("Email is required."),
-  body('username').not().isEmpty().withMessage("Username is required."),
+ // body('username').not().isEmpty().withMessage("Username is required."),
   body('displayname').not().isEmpty().withMessage("Display Name is required."),
   body('category').not().isEmpty().withMessage("Category is required."),
   body('street').not().isEmpty().withMessage("Street is required."),
@@ -47,10 +47,4 @@ const loginValidation = [
   body('password').not().isEmpty().withMessage("Password is required.")
 ];
 
-const testExpressValidatorMiddleware = async (req, res, middlewares) => {
-  await Promise.all(middlewares.map(async (middleware) => {
-    await middleware(req, res, () => undefined);
-  }));
-};
-
-module.exports = { registerCustomerValidation, registerRestaurantValidation, loginValidation, testExpressValidatorMiddleware };
+module.exports = { registerCustomerValidation, registerRestaurantValidation, loginValidation };
