@@ -12,6 +12,8 @@ const MongoStore = require('connect-mongo')(session);
 
 const moment = require('moment');
 
+const { envPort, sessionKey } = require('./config');
+
 //Import helpers
 const helpers = require("./helpers")
 //routes
@@ -21,7 +23,7 @@ const customer_route = require('./routes/customer_routes');
 const restaurant_route = require('./routes/restaurant_routes');
 
 const app = express();
-const port = 8000;
+const port = envPort || 8000;
 
 app.listen(port,() => {
     console.log("App listening at port " + port);
@@ -43,16 +45,16 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(session({
-    secret: 'kookie',
+    secret: sessionKey,
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
     resave: false,
     saveUninitialized: true,
       //maxAge = ms - s - m - h - d
     cookie: { secure: false, maxAge: 1000 * 60 * 60 * 1 * 1 }
   }));
-  
+
   app.use(flash());
-  
+
   app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');

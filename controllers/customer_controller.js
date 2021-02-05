@@ -19,8 +19,8 @@ exports.get_customer_profile = (req, res, next) =>{
         while(contact.length <11){
             contact = "0" + contact;
         }
-      } 
-      
+      }
+
       res.render('customer/profile', {
           customer_name: req.session.model.username + " "+  req.session.model.displayname,
           customer_address: location,
@@ -28,7 +28,7 @@ exports.get_customer_profile = (req, res, next) =>{
           customer_email: req.session.model.email,
           usertype: req.session.usertype,
           logged_in:true,
-          title: req.session.model.username + " - Profile"  
+          title: req.session.model.username + " - Profile"
       });
     }
     else{
@@ -47,7 +47,7 @@ exports.get_edit_profile = function(req,res){
     customer:req.session.model,
     locatEmpty: locEmpty,
     usertype:req.session.usertype,
-    title: req.session.model.username + " - Profile"  
+    title: req.session.model.username + " - Profile"
   })
 }
 /*
@@ -58,4 +58,8 @@ exports.update_profile = function(req, res){
        req.session.model=result;
        return res.send({status:200});
    });
+}
+
+exports.edit_profile = function(req,res){
+  res.redirect("/customer/profile")
 }
