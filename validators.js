@@ -47,11 +47,4 @@ const loginValidation = [
   body('password').not().isEmpty().withMessage("Password is required.")
 ];
 
-const testExpressValidatorMiddleware = async (req, res, middlewares) => {
-  await Promise.all(middlewares.map(async (middleware) => {
-    await middleware(req, res, () => undefined);
-  }));
-};
-
-
-module.exports = { registerCustomerValidation, registerRestaurantValidation, loginValidation, testExpressValidatorMiddleware  };
+module.exports = { registerCustomerValidation, registerRestaurantValidation, loginValidation };

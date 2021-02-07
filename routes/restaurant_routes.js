@@ -16,8 +16,8 @@ router.post('/updateProfile', restaurant_controller.update_profile); // Update R
 
 router.post('/save', restaurant_controller.saveChanges); //Updates Restaurant Menu
 
-router.get('/:restaurantId', restaurant_controller.get_restaurant_profile); // Customer View of a restaurant
 
-router.post('/editProfile', restaurant_controller.edit_profile);
+
+router.get('/:restaurantId', restaurant_controller.get_restaurant_profile); // Customer View of a restaurant
 
 module.exports = router;
