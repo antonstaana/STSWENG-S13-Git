@@ -8,4 +8,6 @@ router.get('/editProfile', customer_controller.get_edit_profile);
 
 router.post('/updateProfile', customer_controller.update_profile);
 
+router.post('/editProfile', customer_controller.edit_profile);
+
 module.exports = router;

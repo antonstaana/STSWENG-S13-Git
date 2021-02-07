@@ -19,7 +19,7 @@ exports.get_userResto = function(req,res){
                 res.render('restaurant_profile',{
                     usertype: req.session.usertype,
                     restaurant: req.session.model,
-                    contactno: contact, 
+                    contactno: contact,
                     own: true,
                     menu: menu,
                     logged_in:true,
@@ -114,7 +114,7 @@ exports.addProduct = function(req, res){
         img:undefined
     };
     req.session.changesStatus = true;
-    req.session.changesArr.push(product);   
+    req.session.changesArr.push(product);
    // console.log(req.session.changes);
     res.send({status: 200});
 }
@@ -151,4 +151,8 @@ exports.saveChanges = function(req,res){
         //console.log("Restaurant Controller resu:  "+resu);
        return res.send({status:200});
     });
+}
+
+exports.edit_profile = function(req,res){
+  res.redirect("/restaurant/profile")
 }
